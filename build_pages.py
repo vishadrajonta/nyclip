@@ -128,7 +128,7 @@ def header(here=""):
       <div class="marquee-bar">
         <table cellspacing="0" cellpadding="0"><tr>
           <td class="svc-label">SERVICE CHANGE</td>
-          <td><marquee behavior="alternate" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Everything Bagel, Rooftop Run, and Midtown Drive are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
+          <td><marquee behavior="scroll" direction="left" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Everything Bagel, Rooftop Run, and Midtown Drive are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
         </tr></table>
       </div>
     </td>
