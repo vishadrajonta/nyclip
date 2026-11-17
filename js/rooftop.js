@@ -138,7 +138,7 @@
       ctx.fillRect(0, H - 18, W, 18);
       ctx.fillStyle = "#e8d056";
       for (var s = 0; s < 12; s++) ctx.fillRect(s * 50, H - 10, 22, 3);
-      ctx.fillStyle = "#003366";
+      ctx.fillStyle = "#111111";
       ctx.font = "bold 20px Verdana, Arial, sans-serif";
       ctx.textAlign = "center";
       ctx.fillText("Rooftop Run", W / 2, 80);
@@ -167,7 +167,7 @@
     roofs.forEach(drawBuilding);
     drawPerson();
 
-    ctx.fillStyle = "#003366";
+    ctx.fillStyle = "#111111";
     ctx.font = "bold 12px Verdana, Arial, sans-serif";
     ctx.textAlign = "left";
     ctx.fillText("Blocks: " + score + "   near " + avenueName(), 10, 18);

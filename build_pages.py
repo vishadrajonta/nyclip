@@ -3,6 +3,11 @@
 import os, html as htmllib, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+V = "3"
+
+def asset(path):
+    return f"{path}?v={V}"
+
 
 # Four Figma example blurbs stay verbatim. Two extras kept from the first draft.
 GAMES = [
@@ -22,7 +27,7 @@ GAMES = [
         "playable": True,
         "col": "new",
         "place": "the bagel shop",
-        "script": "js/bagel.js",
+        "script": asset("js/bagel.js"),
         "hint": "Arrow keys or the mouse move the bagel. Catch only what the ticket says.",
         "thumb": "thumb-lg",
     },
@@ -33,7 +38,7 @@ GAMES = [
         "playable": True,
         "col": "new",
         "place": "Midtown",
-        "script": "js/rooftop.js",
+        "script": asset("js/rooftop.js"),
         "hint": "Space bar or click to jump. Don’t touch the street.",
         "thumb": "thumb-md",
     },
@@ -104,6 +109,9 @@ def header(here=""):
         <h1><a href="index.html">NYClip</a></h1>
         <div class="tag">funny free games about life in the city</div>
       </div>
+      <div class="skyline">
+        <img src="{asset('img/skyline.png')}" alt="New York skyline" width="800" height="100">
+      </div>
       <div class="navwrap">
         {nav(here)}
       </div>
@@ -140,8 +148,8 @@ def page(title, body, here=""):
   <title>{esc(title)}</title>
   <meta name="description" content="NYClip: funny free games about life in New York City. Send them to a friend or put them on your website.">
   <meta name="viewport" content="width=800">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="{asset("css/nyc.css")}">
+  <link rel="icon" type="image/png" href="{asset("img/favicon.png")}">
 </head>
 <body>
 <table class="page" cellspacing="0" cellpadding="0" align="center">
@@ -163,7 +171,7 @@ def game_row(g, show_send=True):
     place = f'<div class="place">{esc(g["place"])}</div>' if g.get("place") else ""
     return f'''        <table class="gamerow" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="thumb {g.get("thumb","thumb-md")}"><a href="game.html?id={g["id"]}"><img src="img/thumbs/{g["id"]}.png" alt="{esc(g["title"])}"></a></td>
+            <td class="thumb {g.get("thumb","thumb-md")}"><a href="game.html?id={g["id"]}"><img src="{asset('img/thumbs/' + g['id'] + '.png')}" alt="{esc(g["title"])}"></a></td>
             <td>
               <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>{tag}
               {place}
@@ -181,7 +189,7 @@ def all_games_list():
     return "\n".join(items)
 
 def counter(num="002847"):
-    imgs = "".join(f'<img src="img/digits/{d}.png" alt="{d}" width="14" height="22">' for d in num)
+    imgs = "".join(f'<img src="{asset("img/digits/" + d + ".png")}" alt="{d}" width="14" height="22">' for d in num)
     return f'''            <div class="counter">
               You are visitor number<br>
               {imgs}
@@ -196,7 +204,7 @@ def index():
         new_html += f'''
           <div class="newblock">
             <div class="newflag">NEW!</div>
-            <a href="game.html?id={g["id"]}"><img src="img/thumbs/{g["id"]}.png" alt="{esc(g["title"])}"></a><br>
+            <a href="game.html?id={g["id"]}"><img src="{asset('img/thumbs/' + g['id'] + '.png')}" alt="{esc(g["title"])}"></a><br>
             <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>
             <div class="place">{esc(g["place"])}</div>
           </div>'''
@@ -338,7 +346,7 @@ def games_page():
             tag = " <span class=\"tag\">you can play this one</span>" if g["playable"] else ""
             place = f'<div class="place">{esc(g["place"])}</div>' if g.get("place") else ""
             cells.append(f'''          <td>
-            <a href="game.html?id={g["id"]}"><img src="img/thumbs/{g["id"]}.png" alt="{esc(g["title"])}"></a>
+            <a href="game.html?id={g["id"]}"><img src="{asset('img/thumbs/' + g['id'] + '.png')}" alt="{esc(g["title"])}"></a>
             <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>{tag}
             {place}
             <span class="blurb">{esc(g["blurb"])}</span>
@@ -397,7 +405,7 @@ var GAMES = {data};
   box.innerHTML =
     '<div class="stationsign"><span class="bullet b-6">6</span>NOW PLAYING</div>' +
     '<table class="gamehead" cellspacing="0" cellpadding="0"><tr>' +
-    '<td style="width:140px"><img src="img/thumbs/' + g.id + '.png" alt=""></td>' +
+    '<td style="width:140px"><img src="img/thumbs/' + g.id + '.png?v={V}" alt=""></td>' +
     '<td><h1>' + g.title + '</h1>' + place + '<div class="blurb-lg">' + g.blurb + '</div>' +
     '<a class="sendlink" href="send.html?game=' + g.id + '">send to a friend</a>' +
     ' &nbsp; <a class="sendlink" href="games.html">list all games</a></td></tr></table>' +

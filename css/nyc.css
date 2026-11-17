@@ -60,6 +60,19 @@ img { border: 0; }
 }
 
 /* subway line circle nav */
+.skyline {
+  background: #c9bfa8;
+  line-height: 0;
+  font-size: 0;
+  border-bottom: 1px solid #111;
+}
+.skyline img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
 .navwrap {
   background: #111111;
   text-align: center;
@@ -336,7 +349,7 @@ img { border: 0; }
 .playbox canvas {
   display: block;
   margin: 0 auto;
-  background: #22334a;
+  background: #333333;
   border: 1px solid #000;
   max-width: 100%;
 }

@@ -164,7 +164,7 @@
     ctx.strokeStyle = "#8a5a22";
     ctx.lineWidth = 2;
     ctx.stroke();
-    ctx.fillStyle = "#22334a";
+    ctx.fillStyle = "#3a2a1c";
     ctx.beginPath();
     ctx.arc(0, 0, 8, 0, Math.PI * 2);
     ctx.fill();
