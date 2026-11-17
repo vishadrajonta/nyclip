@@ -32,22 +32,17 @@ img { border: 0; }
   background: #1b5e3b;
   color: #ffffff;
   text-align: center;
-  padding: 10px 8px 8px 8px;
+  padding: 16px 8px 14px 8px;
   border-top: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
 }
 .mast a { color: #ffffff; text-decoration: none; }
-.mast .city {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
-  letter-spacing: 4px;
-  font-weight: bold;
-}
 .mast h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
   letter-spacing: 1px;
-  margin: 2px 0 0 0;
+  line-height: 1.05;
+  margin: 0;
   font-weight: bold;
   color: #ffffff;
 }
@@ -55,7 +50,7 @@ img { border: 0; }
   font-family: Verdana, Arial, sans-serif;
   font-size: 10px;
   letter-spacing: 1px;
-  margin-top: 2px;
+  margin-top: 10px;
   color: #e8ffe8;
 }
 
@@ -81,18 +76,26 @@ img { border: 0; }
 .nav {
   margin: 0 auto;
   border-collapse: collapse;
+  table-layout: fixed;
+  width: 520px;
 }
 .nav td {
-  padding: 2px 11px;
+  width: 104px;
+  padding: 0;
   text-align: center;
   vertical-align: top;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 11px;
+  line-height: 14px;
 }
-.nav a { text-decoration: none; color: #ffffff; }
+.nav a { text-decoration: none; color: #ffffff; display: block; }
 .nav a:visited { color: #ffffff; }
 .nav a:hover { color: #ffff99; text-decoration: underline; }
 .nav .here { text-decoration: underline; }
+.nav .bullet {
+  display: block;
+  margin: 0 auto 6px auto;
+}
 
 .bullet {
   display: inline-block;
@@ -105,7 +108,6 @@ img { border: 0; }
   font-size: 13px;
   text-align: center;
   color: #ffffff;
-  margin-bottom: 2px;
 }
 .b-1 { background: #ee352e; }
 .b-6 { background: #00933c; }

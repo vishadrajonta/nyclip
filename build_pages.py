@@ -3,7 +3,7 @@
 import os, html as htmllib, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "4"
+V = "5"
 
 def asset(path):
     return f"{path}?v={V}"
@@ -116,7 +116,6 @@ def header(here=""):
     <td>
       {awning()}
       <div class="mast">
-        <div class="city">NEW YORK</div>
         <h1><a href="index.html">NYClip</a></h1>
         <div class="tag">funny free games about life in the city</div>
       </div>
