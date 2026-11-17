@@ -1,186 +1,245 @@
-/* NYClip - first draft, 2001-ish layout */
+/* NYClip - second draft. A bit homemade on purpose. */
+
 body {
   margin: 0;
-  padding: 0;
-  background: #336699;
-  color: #ffffff;
-  font-family: Verdana, Arial, Tahoma, sans-serif;
-  font-size: 11px;
-  line-height: 15px;
+  padding: 16px 0 30px 0;
+  background: #c8c2b4;
+  color: #000000;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
 }
-a { color: #ffffff; }
-a:hover { color: #ffff99; }
+
+a { color: #0000ee; text-decoration: underline; }
+a:visited { color: #551a8b; }
+a:hover { color: #0000ee; }
+
 img { border: 0; }
 
 .page {
-  width: 760px;
-  margin: 16px auto 40px auto;
+  width: 772px;
+  margin: 0 auto;
   border-collapse: collapse;
+  background: #f3efe4;
+  border: 3px outset #e8e4d8;
 }
 
-/* header */
-.header {
-  background: #003366;
-  border-radius: 20px;
+/* bodega awning made of uneven table stripes */
+.awning table { width: 100%; border-collapse: collapse; }
+.awning td { height: 24px; font-size: 1px; line-height: 1px; padding: 0; }
+
+.mast {
+  background: #1b5e3b;
+  color: #ffffff;
   text-align: center;
-  padding: 10px 10px 8px 10px;
+  padding: 10px 8px 8px 8px;
+  border-top: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
 }
-.header .logo {
-  display: block;
-  margin: 0 auto 2px auto;
-  height: 58px;
-  width: auto;
+.mast a { color: #ffffff; text-decoration: none; }
+.mast .city {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+.mast h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  letter-spacing: 1px;
+  margin: 2px 0 0 0;
+  font-weight: bold;
+  color: #ffffff;
+}
+.mast .tag {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-top: 2px;
+  color: #e8ffe8;
+}
+
+/* subway line circle nav */
+.navwrap {
+  background: #111111;
+  text-align: center;
+  padding: 8px 4px 10px 4px;
 }
 .nav {
-  color: #ffffff;
-  font-style: italic;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  padding: 4px 8px 6px 8px;
+  margin: 0 auto;
+  border-collapse: collapse;
 }
-.nav a {
-  color: #ffffff;
-  text-decoration: none;
-  margin: 0 9px;
-}
-.nav a:hover { text-decoration: underline; color: #ffffcc; }
-.nav a.here { text-decoration: underline; }
-
-/* three columns */
-.cols { width: 100%; border-collapse: collapse; margin-top: 10px; }
-.cols td { vertical-align: top; }
-.col-left { width: 230px; padding: 4px 8px 8px 4px; }
-.col-mid { width: 280px; padding: 4px 8px; }
-.col-right { width: 230px; padding: 4px 4px 8px 8px; }
-
-.colhead {
-  background: #3399cc;
-  color: #ffffff;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 13px;
-  letter-spacing: 1px;
-  padding: 3px 8px;
-  margin: 0 0 10px 0;
-  border-radius: 1px 12px 0 0;
-  text-align: left;
-}
-.colhead-right {
-  background: #3399cc;
-  color: #ffffff;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 13px;
-  letter-spacing: 1px;
-  padding: 3px 8px;
-  margin: 0 0 10px 0;
-  border-radius: 1px 12px 0 0;
-}
-
-/* featured game row */
-.gamerow { width: 100%; margin: 0 0 12px 0; border-collapse: collapse; }
-.gamerow td { vertical-align: middle; }
-.gamerow .thumb {
-  width: 78px;
-  padding: 0 8px 0 0;
-}
-.gamerow .thumb img {
-  width: 78px;
-  height: 70px;
-  object-fit: contain;
-  display: block;
-}
-.gtitle {
-  font-weight: bold;
+.nav td {
+  padding: 2px 11px;
+  text-align: center;
+  vertical-align: top;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 11px;
-  color: #ffffff;
-  text-decoration: underline;
 }
-.gtitle:hover { color: #ffff99; }
-.blurb { color: #ffffff; font-size: 10px; line-height: 13px; padding-top: 2px; }
-.sendlink {
+.nav a { text-decoration: none; color: #ffffff; }
+.nav a:visited { color: #ffffff; }
+.nav a:hover { color: #ffff99; text-decoration: underline; }
+.nav .here { text-decoration: underline; }
+
+.bullet {
   display: inline-block;
-  font-size: 9px;
-  color: #dceeff; text-decoration: underline;
-  margin-top: 2px;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  border-radius: 50%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 2px;
 }
-.sendlink:hover { color: #ffff99; }
+.b-1 { background: #ee352e; }
+.b-6 { background: #00933c; }
+.b-7 { background: #b933ad; }
+.b-A { background: #0039a6; }
+.b-N { background: #fccc0a; color: #000000; }
+.b-L { background: #a7a9ac; color: #000000; }
+
+.marquee-bar {
+  background: #111111;
+  color: #fccc0a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  border-top: 1px solid #333;
+}
+.marquee-bar table { width: 100%; border-collapse: collapse; }
+.svc-label {
+  width: 148px;
+  background: #ee352e;
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+.marquee-bar marquee { padding: 4px 0; color: #fccc0a; }
+
+/* subway station sign headings */
+.stationsign {
+  background: #111111;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding: 4px 8px;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+}
+.stationsign .bullet {
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  font-size: 11px;
+  margin: 0 6px 0 0;
+  vertical-align: -2px;
+}
+
+/* three columns - a little uneven on purpose */
+.cols { width: 100%; border-collapse: collapse; }
+.cols td { vertical-align: top; }
+.col-left {
+  width: 250px;
+  padding: 10px 8px 16px 10px;
+  background: #f3efe4;
+  border-right: 1px solid #bbb;
+}
+.col-mid {
+  width: 250px;
+  padding: 12px 10px 18px 10px;
+  background: #fff8dc;
+  border-right: 1px solid #bbb;
+}
+.col-right {
+  width: 230px;
+  padding: 8px 10px 12px 8px;
+  background: #eeeae0;
+}
+
+.gamerow { width: 100%; margin: 0 0 14px 0; border-collapse: collapse; }
+.gamerow td { vertical-align: top; }
+.gamerow .thumb { width: 84px; padding: 0 7px 0 0; }
+.gamerow .thumb img {
+  display: block;
+  background: #ffffff;
+  border: 2px solid #000000;
+}
+.thumb-sm img { width: 72px; height: 68px; }
+.thumb-md img { width: 80px; height: 74px; }
+.thumb-lg img { width: 86px; height: 70px; }
+
+.gtitle { font-weight: bold; font-size: 12px; }
+.place {
+  color: #555555;
+  font-size: 9px;
+  font-style: italic;
+  margin: 1px 0 2px 0;
+}
+.blurb { font-size: 11px; line-height: 14px; color: #222; padding-top: 1px; }
+.sendlink { font-size: 10px; }
 
 .leftnote {
-  color: #ffffff;
   font-size: 11px;
-  margin-top: 18px;
-  line-height: 15px;
+  margin-top: 8px;
+  padding: 6px;
+  border: 1px dashed #666;
+  background: #fff;
 }
-.leftnote b { font-size: 12px; }
 
-/* welcome box */
-.welcome {
-  background: #99bbd4;
-  color: #003366;
-  padding: 12px 12px 10px 12px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-.welcome a { color: #003366; }
+.welcome { margin-bottom: 8px; }
 .welcome h2 {
   margin: 0 0 6px 0;
   font-size: 16px;
-  font-weight: bold;
-  color: #003366;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
 }
-.welcome h2 span { font-weight: normal; font-size: 11px; }
 .welcome p { margin: 0 0 8px 0; font-size: 11px; line-height: 15px; }
 
-/* oval new games */
-.newwrap { text-align: center; margin: 8px 0; position: relative; }
-.new-oval {
-  display: block;
-  width: 168px;
-  height: 118px;
-  margin: 6px auto;
-  border-radius: 84px / 59px;
-  overflow: hidden;
-  background: #003366;
-  border: 3px solid #e8f0ff;
-  position: relative;
-  text-decoration: none;
+.newblock {
+  margin: 0 0 12px 0;
+  border: 2px solid #000;
+  background: #ffffff;
+  padding: 4px;
+  text-align: center;
 }
-.new-oval img {
-  width: 100%;
-  height: 100%;
+.newblock img {
+  width: 150px;
+  height: 112px;
   object-fit: cover;
-  display: block;
-  background: #1a4a7a;
+  border: 1px inset #999;
+  background: #ddd;
 }
-.newstar {
-  position: absolute;
-  left: 18px;
-  top: -2px;
-  z-index: 2;
-  background: #cc2200;
-  color: #fff;
-  font: italic bold 10px Verdana, Arial, sans-serif;
-  padding: 3px 7px;
-  transform: rotate(-18deg);
-  border: 2px solid #ffee55;
+.newflag {
+  color: #cc0000;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 11px;
   letter-spacing: 1px;
 }
 
-/* mailing list */
+/* metrocard-ish mail box */
 .mail {
-  background: #003366;
-  color: #ffffff;
-  padding: 14px 16px 16px 16px;
-  border-radius: 10px;
+  background: #fccc0a;
+  color: #0039a6;
+  border: 2px solid #0039a6;
+  padding: 10px 10px 12px 10px;
   text-align: center;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 .mail h3 {
-  margin: 0 0 10px 0;
-  font-size: 14px;
-  font-weight: bold;
-  color: #ffffff;
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0039a6;
 }
 .mail input[type=text],
 .mail input[type=email],
@@ -189,10 +248,10 @@ img { border: 0; }
 .form textarea,
 .form select {
   font: 12px Verdana, Arial, sans-serif;
-  padding: 3px 4px;
-  border: 1px solid #001122;
+  padding: 2px 3px;
+  border: 2px inset #999;
 }
-.mail input[type=text], .mail input[type=email] { width: 180px; }
+.mail input[type=text], .mail input[type=email] { width: 170px; }
 .btn {
   font: 12px Verdana, Arial, sans-serif;
   background: #e6e6e6;
@@ -201,67 +260,59 @@ img { border: 0; }
   border-left: 2px solid #ffffff;
   border-right: 2px solid #666666;
   border-bottom: 2px solid #666666;
-  padding: 2px 14px;
-  margin-top: 8px;
+  padding: 2px 12px;
+  margin-top: 6px;
   cursor: pointer;
 }
-.btn:active {
-  border-top: 2px solid #666666;
-  border-left: 2px solid #666666;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-}
-.mail .fine { font-size: 10px; line-height: 14px; margin-top: 10px; color: #d0e0f0; }
+.mail .fine { font-size: 10px; line-height: 13px; margin-top: 8px; color: #0039a6; }
 
-.clickhere {
+.alllist { margin: 0 0 10px 0; padding: 0 0 0 16px; }
+.alllist li { margin: 0 0 6px 0; font-size: 12px; }
+.tag { color: #cc0000; font-size: 9px; font-style: italic; margin-left: 2px; }
+
+.counter {
+  margin-top: 14px;
   text-align: center;
-  font-size: 11px;
-  padding: 12px 0 4px 0;
-  font-style: italic;
+  font-size: 10px;
+  border: 1px solid #999;
+  background: #ffffff;
+  padding: 6px 4px;
 }
-.clickhere a { color: #ffffff; }
+.counter img { vertical-align: middle; margin: 0 1px; border: 0; }
 
-/* all-games list */
-.alllist { margin: 0; padding: 0 0 0 2px; list-style: none; }
-.alllist li { margin: 0 0 5px 0; font-size: 11px; line-height: 14px; }
-.alllist a { color: #ffffff; text-decoration: underline; }
-.alllist a:hover { color: #ffff99; }
-.alllist .tag {
-  color: #ffee66;
-  font-size: 9px;
-  font-style: italic;
-  margin-left: 3px;
+.bestview {
+  text-align: center;
+  font-size: 10px;
+  color: #333;
+  padding: 8px 8px 2px 8px;
 }
 
-/* footer */
 .footer {
-  background: #003366;
+  background: #111111;
   color: #ffffff;
   font-size: 10px;
-  padding: 6px 12px;
-  margin-top: 16px;
-  border-radius: 2px;
+  padding: 8px 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.footer a { color: #ffffff; text-decoration: underline; margin: 0 3px; }
-.footer .copy { float: right; color: #c0d0e0; }
+.footer a { color: #fccc0a; }
+.footer a:visited { color: #fccc0a; }
+.footer .copy { float: right; color: #cccccc; }
+.footer .please { color: #aaaaaa; margin-top: 4px; clear: both; }
 
 /* inner pages */
 .inner {
-  background: #99bbd4;
-  color: #003366;
+  background: #f3efe4;
+  color: #000000;
   padding: 16px 18px 20px 18px;
-  border-radius: 4px;
-  margin-top: 10px;
 }
 .inner h1 {
   margin: 0 0 8px 0;
-  font-size: 18px;
-  color: #003366;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: #000;
 }
-.inner h2 { font-size: 13px; color: #003366; margin: 16px 0 6px 0; }
-.inner p, .inner li { color: #003366; font-size: 11px; line-height: 16px; }
-.inner a { color: #003366; }
-.inner a:hover { color: #000066; }
+.inner h2 { font-size: 13px; margin: 16px 0 6px 0; }
+.inner p, .inner li { font-size: 12px; line-height: 17px; color: #000; }
 .inner .blurb-lg { font-size: 12px; line-height: 17px; margin: 8px 0 12px 0; }
 
 .gamehead { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
@@ -270,61 +321,53 @@ img { border: 0; }
   width: 120px;
   height: 108px;
   object-fit: contain;
-  background: #336699;
-  border-radius: 8px;
+  background: #ffffff;
+  border: 2px solid #000;
 }
 
 .playbox {
-  background: #003366;
+  background: #333333;
   color: #fff;
-  padding: 10px;
+  padding: 8px;
   text-align: center;
-  border-radius: 6px;
+  border: 2px inset #999;
   margin: 10px 0;
 }
 .playbox canvas {
   display: block;
   margin: 0 auto;
   background: #22334a;
-  border: 2px solid #99bbd4;
+  border: 1px solid #000;
   max-width: 100%;
 }
-.playbox .hud {
-  color: #fff;
-  font-size: 11px;
-  text-align: left;
-  margin: 0 0 6px 0;
-}
-.playbox .hint { color: #d0e0f0; font-size: 10px; margin-top: 6px; }
-.playbox a, .coming a { color: #ffff99; text-decoration: underline; }
-.playbox a:hover, .coming a:hover { color: #ffffff; }
+.playbox .hint { color: #dddddd; font-size: 10px; margin-top: 6px; }
+.playbox a, .coming a { color: #ffff66; }
+.playbox a:visited, .coming a:visited { color: #ffff66; }
 .coming {
-  padding: 28px 16px;
+  padding: 24px 14px;
   color: #fff;
   font-size: 12px;
   line-height: 17px;
 }
-.coming b { font-size: 14px; }
 
-/* all games grid */
 .gamelist { width: 100%; border-collapse: collapse; }
 .gamelist td {
   vertical-align: top;
   width: 50%;
-  padding: 8px 8px 12px 0;
-  color: #003366;
+  padding: 8px 10px 14px 0;
+  color: #000;
 }
 .gamelist img {
-  width: 72px;
-  height: 64px;
+  width: 76px;
+  height: 68px;
   object-fit: contain;
   float: left;
   margin: 0 8px 0 0;
-  background: #336699;
-  border-radius: 4px;
+  background: #fff;
+  border: 2px solid #000;
 }
-.gamelist .gtitle { color: #003366; font-size: 12px; }
-.gamelist .blurb { color: #003366; font-size: 11px; line-height: 14px; }
+.gamelist .gtitle { font-size: 12px; }
+.gamelist .blurb { color: #222; font-size: 11px; line-height: 14px; }
 
 .form p { margin: 8px 0; }
 .form label { display: block; margin-bottom: 2px; }

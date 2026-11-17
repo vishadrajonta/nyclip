@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import os, html as htmllib
+import os, html as htmllib, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# Figma board copy is used verbatim for the four example games.
+# Four Figma example blurbs stay verbatim. Two extras kept from the first draft.
 GAMES = [
     {
         "id": "subway-shuffle",
@@ -12,6 +12,8 @@ GAMES = [
         "blurb": "Don’t miss your stop",
         "playable": False,
         "col": "left",
+        "place": "on the 6",
+        "thumb": "thumb-md",
     },
     {
         "id": "everything-bagel",
@@ -19,8 +21,10 @@ GAMES = [
         "blurb": "You’re working rush hour at the trendy local bagel shop - catch toppings as they fall and don’t mess up any orders!",
         "playable": True,
         "col": "new",
+        "place": "the bagel shop",
         "script": "js/bagel.js",
         "hint": "Arrow keys or the mouse move the bagel. Catch only what the ticket says.",
+        "thumb": "thumb-lg",
     },
     {
         "id": "rooftop-run",
@@ -28,8 +32,10 @@ GAMES = [
         "blurb": "Cross Midtown without touching the ground.",
         "playable": True,
         "col": "new",
+        "place": "Midtown",
         "script": "js/rooftop.js",
         "hint": "Space bar or click to jump. Don’t touch the street.",
+        "thumb": "thumb-md",
     },
     {
         "id": "taxi-dash",
@@ -37,13 +43,8 @@ GAMES = [
         "blurb": "A fare is waiting uptown and five other cabs want it. Get there first and step on it!",
         "playable": False,
         "col": "left",
-    },
-    {
-        "id": "alternate-side",
-        "title": "Alternate Side",
-        "blurb": "Think you can find a parking spot before eleven? Move the car, dodge the sweeper, and hope the sign means what it says.",
-        "playable": False,
-        "col": "left",
+        "place": "uptown",
+        "thumb": "thumb-lg",
     },
     {
         "id": "coffee-regular",
@@ -51,27 +52,8 @@ GAMES = [
         "blurb": "A regular means milk and sugar. Say latte at the cart and you’re walking to the next one.",
         "playable": False,
         "col": "left",
-    },
-    {
-        "id": "walk-up",
-        "title": "Walk-Up",
-        "blurb": "Five flights, a couch, and a roommate who forgot the other end. Mrs. Alvarez is listening.",
-        "playable": False,
-        "col": "more",
-    },
-    {
-        "id": "scaffolding-maze",
-        "title": "Scaffolding Maze",
-        "blurb": "The sidewalk is a tunnel of plywood and mystery drips. Don’t look up.",
-        "playable": False,
-        "col": "more",
-    },
-    {
-        "id": "stoop-sale",
-        "title": "Stoop Sale",
-        "blurb": "A lamp, a toaster, and a box of tapes. Haggle nicely. The neighbor is watching.",
-        "playable": False,
-        "col": "more",
+        "place": "the corner cart",
+        "thumb": "thumb-sm",
     },
     {
         "id": "metrocard-swipe",
@@ -79,71 +61,57 @@ GAMES = [
         "blurb": "The turnstile is hungry and your card is dying. Swipe it right, or get in line for a new one.",
         "playable": False,
         "col": "left",
-    },
-    {
-        "id": "deli-counter",
-        "title": "Deli Counter",
-        "blurb": "Take a number. Know your order. Say “um” and you’re going to the back.",
-        "playable": False,
-        "col": "more",
-    },
-    {
-        "id": "tourist-trap",
-        "title": "Tourist Trap",
-        "blurb": "Get through Times Square without a bus tour, a fake bag, or a flyer for a show you don’t want.",
-        "playable": False,
-        "col": "more",
-    },
-    {
-        "id": "fire-escape",
-        "title": "Fire Escape",
-        "blurb": "Dinner on the fire escape. Don’t drop the fork, and wave to the pigeon like you live here.",
-        "playable": False,
-        "col": "more",
-    },
-    {
-        "id": "crosswalk-chicken",
-        "title": "Crosswalk Chicken",
-        "blurb": "The light is orange and the taxi is rolling. Walk like you mean it.",
-        "playable": False,
-        "col": "more",
-    },
-    {
-        "id": "laundromat-roulette",
-        "title": "Laundromat Roulette",
-        "blurb": "You were gone twenty minutes. Your wet clothes are on the table. Get them in the dryer.",
-        "playable": False,
-        "col": "more",
+        "place": "every station",
+        "thumb": "thumb-md",
     },
 ]
-
-BY_ID = {g["id"]: g for g in GAMES}
 
 def esc(s):
     return htmllib.escape(s, quote=True)
 
+def awning():
+    # slightly uneven red / green bodega stripes
+    widths = [18, 22, 16, 24, 19, 21, 17, 23, 20, 18, 22, 16, 25, 19, 21, 17, 23, 20, 18, 22, 16, 24, 19, 21, 20, 18, 22, 17, 23, 19, 21, 16, 24, 20]
+    cells = []
+    for i, w in enumerate(widths):
+        color = "#cc1f2e" if i % 2 == 0 else "#1f7a3a"
+        cells.append(f'<td bgcolor="{color}" width="{w}">&nbsp;</td>')
+    return '<div class="awning"><table cellspacing="0" cellpadding="0"><tr>' + "".join(cells) + "</tr></table></div>"
+
+NAV = [
+    ("index.html", "Home", "home", "1", "b-1"),
+    ("games.html", "All Games", "games", "6", "b-6"),
+    ("signup.html", "Sign Up", "signup", "N", "b-N"),
+    ("send.html", "Send", "send", "A", "b-A"),
+    ("about.html", "About", "about", "7", "b-7"),
+]
+
 def nav(here=""):
-    links = [
-        ("index.html", "Home", "home"),
-        ("signup.html", "Sign Up", "signup"),
-        ("games.html", "All Games", "games"),
-        ("send.html", "Send To A Friend", "send"),
-        ("about.html", "About Us", "about"),
-    ]
-    bits = []
-    for href, label, key in links:
-        cls = ' class="here"' if key == here else ""
-        bits.append(f'<a href="{href}"{cls}>{label}</a>')
-    return "\n      ".join(bits)
+    cells = []
+    for href, label, key, letter, cls in NAV:
+        mark = ' class="here"' if key == here else ""
+        cells.append(
+            f'<td><a href="{href}"{mark}><span class="bullet {cls}">{letter}</span><br>{label}</a></td>'
+        )
+    return '<table class="nav" align="center" cellspacing="0" cellpadding="0"><tr>' + "".join(cells) + "</tr></table>"
 
 def header(here=""):
     return f'''  <tr>
     <td>
-      <div class="header">
-        <a href="index.html"><img class="logo" src="img/logo.png" alt="NYClip"></a>
-        <div class="nav">
-      {nav(here)}
-        </div>
+      {awning()}
+      <div class="mast">
+        <div class="city">NEW YORK</div>
+        <h1><a href="index.html">NYClip</a></h1>
+        <div class="tag">funny free games about life in the city</div>
+      </div>
+      <div class="navwrap">
+        {nav(here)}
+      </div>
+      <div class="marquee-bar">
+        <table cellspacing="0" cellpadding="0"><tr>
+          <td class="svc-label">SERVICE CHANGE</td>
+          <td><marquee behavior="alternate" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Everything Bagel and Rooftop Run are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
+        </tr></table>
       </div>
     </td>
   </tr>'''
@@ -151,29 +119,27 @@ def header(here=""):
 def footer():
     return '''  <tr>
     <td>
+      <div class="bestview">Best viewed in 800×600 with Internet Explorer or Netscape Navigator.</div>
       <div class="footer">
         <span class="copy">&copy; 2026 NYClip</span>
-        <a href="index.html">Home</a> -
-        <a href="signup.html">Sign Up</a> -
-        <a href="games.html">All Games</a> -
-        <a href="about.html">About Us</a> -
-        <a href="send.html">Send To A Friend</a>
+        <a href="index.html">Home</a> &nbsp;·&nbsp;
+        <a href="games.html">All Games</a> &nbsp;·&nbsp;
+        <a href="signup.html">Sign Up</a> &nbsp;·&nbsp;
+        <a href="about.html">About</a> &nbsp;·&nbsp;
+        <a href="send.html">Send to a friend</a>
+        <div class="please">Stand clear of the closing doors, please. Last updated November 17, 2026.</div>
       </div>
     </td>
   </tr>'''
 
-def page(title, body, here="", extra_js=None):
-    scripts = ""
-    if extra_js:
-        for s in extra_js:
-            scripts += f'\n<script src="{s}"></script>'
+def page(title, body, here=""):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>{esc(title)}</title>
-  <meta name="description" content="NYClip: funny free games about life in New York City. Send them to your friends or put them on your website.">
-  <meta name="viewport" content="width=780">
+  <meta name="description" content="NYClip: funny free games about life in New York City. Send them to a friend or put them on your website.">
+  <meta name="viewport" content="width=800">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
@@ -187,19 +153,20 @@ def page(title, body, here="", extra_js=None):
   </tr>
 {footer()}
 </table>
-{scripts}
 </body>
 </html>
 '''
 
 def game_row(g, show_send=True):
     send = f'<br><a class="sendlink" href="send.html?game={g["id"]}">send to a friend</a>' if show_send else ""
-    tag = ' <span class="tag">play</span>' if g["playable"] else ""
+    tag = ' <span class="tag">play!</span>' if g["playable"] else ""
+    place = f'<div class="place">{esc(g["place"])}</div>' if g.get("place") else ""
     return f'''        <table class="gamerow" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="thumb"><a href="game.html?id={g["id"]}"><img src="img/thumbs/{g["id"]}.png" alt="{esc(g["title"])}"></a></td>
+            <td class="thumb {g.get("thumb","thumb-md")}"><a href="game.html?id={g["id"]}"><img src="img/thumbs/{g["id"]}.png" alt="{esc(g["title"])}"></a></td>
             <td>
               <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>{tag}
+              {place}
               <div class="blurb">{esc(g["blurb"])}</div>
               {send}
             </td>
@@ -213,6 +180,13 @@ def all_games_list():
         items.append(f'          <li><a href="game.html?id={g["id"]}">{esc(g["title"])}</a>{tag}</li>')
     return "\n".join(items)
 
+def counter(num="002847"):
+    imgs = "".join(f'<img src="img/digits/{d}.png" alt="{d}" width="14" height="22">' for d in num)
+    return f'''            <div class="counter">
+              You are visitor number<br>
+              {imgs}
+            </div>'''
+
 def index():
     left = [g for g in GAMES if g["col"] == "left"]
     news = [g for g in GAMES if g["col"] == "new"]
@@ -220,50 +194,47 @@ def index():
     new_html = ""
     for g in news:
         new_html += f'''
-          <div class="newwrap">
-            <div class="newstar">NEW</div>
-            <a class="new-oval" href="game.html?id={g["id"]}" title="{esc(g["title"])}">
-              <img src="img/thumbs/{g["id"]}.png" alt="{esc(g["title"])}">
-            </a>
+          <div class="newblock">
+            <div class="newflag">NEW!</div>
+            <a href="game.html?id={g["id"]}"><img src="img/thumbs/{g["id"]}.png" alt="{esc(g["title"])}"></a><br>
+            <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>
+            <div class="place">{esc(g["place"])}</div>
           </div>'''
-    more = [g for g in GAMES if g["col"] == "more"][:3]
-    more_html = "\n".join(game_row(g) for g in more)
     body = f'''      <table class="cols" cellspacing="0" cellpadding="0">
         <tr>
           <td class="col-left">
-            <div class="colhead">NYCLIPS</div>
+            <div class="stationsign"><span class="bullet b-6">6</span>GAMES</div>
 {left_html}
             <div class="leftnote">
-              <b>Enhance your website for FREE!</b><br><br>
-              Put a NYClip on your website and improve the experience for all your users.
+              <b>Got a game?</b><br>
+              If you want your stuff on this website, <a href="about.html">click here</a>.
             </div>
           </td>
           <td class="col-mid">
             <div class="welcome">
-              <h2>Welcome <span>to NYClip, where you’ll find funny free games about life in New York City, and clips to send to your friends or put on your website. Join our mailing list and receive all the new cool NYClips when they are released.</span></h2>
-{new_html}
+              <h2>Welcome to NYClip</h2>
+              <p>Funny free games about life in New York City. Send them to your friends or put them on your website. Mind the gap.</p>
             </div>
+{new_html}
             <div class="mail">
-              <h3>Join Our FREE NYClip Mailing List</h3>
+              <h3>Join the FREE mailing list</h3>
               <form action="signup.html" method="get" onsubmit="return checkMail(this);">
-                <input type="email" name="email" placeholder="">
+                <input type="email" name="email">
                 <br>
                 <input class="btn" type="submit" value="Submit">
               </form>
-              <div class="fine">Enter your email address above and you’ll receive the newest FREE NYClip emails with funny games etc.</div>
+              <div class="fine">We’ll tell you when the new NYClips are out. No spam, we barely have time to swipe in.</div>
             </div>
           </td>
           <td class="col-right">
-            <div class="colhead-right">LIST ALL GAMES</div>
+            <div class="stationsign"><span class="bullet b-A">A</span>ALL GAMES</div>
             <ul class="alllist">
 {all_games_list()}
             </ul>
-            <div class="colhead-right" style="margin-top:16px;">MORE NYCLIPS</div>
-{more_html}
+{counter()}
           </td>
         </tr>
       </table>
-      <div class="clickhere">If you want your stuff on our website <a href="about.html">click here</a>.</div>
 <script>
 function checkMail(f) {{
   var v = f.email.value || "";
@@ -279,6 +250,7 @@ function checkMail(f) {{
 
 def about():
     body = '''      <div class="inner">
+        <div class="stationsign"><span class="bullet b-7">7</span>ABOUT</div>
         <h1>About NYClip</h1>
         <p>NYClip is a free games site about everyday life in New York City. Funny little games, short blurbs, pictures you can send to a friend. The kind of site you might have left open in a browser window in 2001.</p>
         <p>It started as a school project: a sister site to the old MiniClip homepage. That first version had jokey copy next to each game and tightly cropped pictures of the characters. A later version of the site was mostly lists — latest, hot, A to Z, every game they had. This draft tries to keep both of those things, only every game is about life in the city.</p>
@@ -295,8 +267,9 @@ def about():
 
 def signup():
     body = '''      <div class="inner">
+        <div class="stationsign"><span class="bullet b-N">N</span>SIGN UP</div>
         <h1>Sign Up</h1>
-        <p>Join our free mailing list and we’ll tell you when the new NYClips are out.</p>
+        <p>Join the free mailing list and we’ll tell you when the new NYClips are out.</p>
         <form class="form" onsubmit="return signUp(this);">
           <p><label>Your name</label><input type="text" name="name"></p>
           <p><label>Your email</label><input type="email" name="email"></p>
@@ -319,6 +292,7 @@ function signUp(f) {
 def send_page():
     opts = "\n".join(f'            <option value="{g["id"]}">{esc(g["title"])}</option>' for g in GAMES)
     body = f'''      <div class="inner">
+        <div class="stationsign"><span class="bullet b-A">A</span>SEND TO A FRIEND</div>
         <h1>Send To A Friend</h1>
         <p>Send a NYClip to a friend, the old fashioned way.</p>
         <form class="form" onsubmit="return sendClip(this);">
@@ -357,15 +331,16 @@ function sendClip(f) {{
     return page("Send To A Friend - NYClip", body, here="send")
 
 def games_page():
-    # two-column list of every game
     rows = []
     for i in range(0, len(GAMES), 2):
         cells = []
         for g in GAMES[i:i+2]:
-            tag = " <i>you can play this one</i>" if g["playable"] else ""
+            tag = " <span class=\"tag\">you can play this one</span>" if g["playable"] else ""
+            place = f'<div class="place">{esc(g["place"])}</div>' if g.get("place") else ""
             cells.append(f'''          <td>
             <a href="game.html?id={g["id"]}"><img src="img/thumbs/{g["id"]}.png" alt="{esc(g["title"])}"></a>
-            <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>{tag}<br>
+            <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>{tag}
+            {place}
             <span class="blurb">{esc(g["blurb"])}</span>
             <div class="clear"></div>
           </td>''')
@@ -373,8 +348,9 @@ def games_page():
             cells.append("          <td></td>")
         rows.append("        <tr>\n" + "\n".join(cells) + "\n        </tr>")
     body = f'''      <div class="inner">
+        <div class="stationsign"><span class="bullet b-6">6</span>ALL GAMES</div>
         <h1>All Games</h1>
-        <p>The full list. Two of them you can play right now. The others are still warming up.</p>
+        <p>The full list. Two of them you can play right now. The others are delayed. Check back.</p>
         <table class="gamelist" cellspacing="0" cellpadding="0">
 {"".join(rows)}
         </table>
@@ -382,14 +358,12 @@ def games_page():
     return page("All Games - NYClip", body, here="games")
 
 def game_pages_js():
-    """Single template page that fills in from a query string."""
-    # embed game data as JS
-    import json
     data = json.dumps([
         {
             "id": g["id"],
             "title": g["title"],
             "blurb": g["blurb"],
+            "place": g.get("place", ""),
             "playable": g["playable"],
             "script": g.get("script", ""),
             "hint": g.get("hint", ""),
@@ -419,10 +393,12 @@ var GAMES = {data};
   }} else {{
     play = '<div class="playbox"><div class="coming"><b>This game is still in the shop.</b><br><br>The picture and the blurb are here. The game itself is coming in a later draft. In the meantime, try <a href="game.html?id=everything-bagel" style="white-space:nowrap">Everything Bagel</a> or <a href="game.html?id=rooftop-run" style="white-space:nowrap">Rooftop Run</a>.</div></div>';
   }}
+  var place = g.place ? '<div class="place">' + g.place + '</div>' : '';
   box.innerHTML =
+    '<div class="stationsign"><span class="bullet b-6">6</span>NOW PLAYING</div>' +
     '<table class="gamehead" cellspacing="0" cellpadding="0"><tr>' +
     '<td style="width:140px"><img src="img/thumbs/' + g.id + '.png" alt=""></td>' +
-    '<td><h1>' + g.title + '</h1><div class="blurb-lg">' + g.blurb + '</div>' +
+    '<td><h1>' + g.title + '</h1>' + place + '<div class="blurb-lg">' + g.blurb + '</div>' +
     '<a class="sendlink" href="send.html?game=' + g.id + '">send to a friend</a>' +
     ' &nbsp; <a class="sendlink" href="games.html">list all games</a></td></tr></table>' +
     play;
