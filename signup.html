@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sign Up - NYClip</title>
+  <meta name="description" content="NYClip: funny free games about life in New York City. Send them to your friends or put them on your website.">
+  <meta name="viewport" content="width=780">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+</head>
+<body>
+<table class="page" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+      <div class="header">
+        <a href="index.html"><img class="logo" src="img/logo.png" alt="NYClip"></a>
+        <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="signup.html" class="here">Sign Up</a>
+      <a href="games.html">All Games</a>
+      <a href="send.html">Send To A Friend</a>
+      <a href="about.html">About Us</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="inner">
+        <h1>Sign Up</h1>
+        <p>Join our free mailing list and we’ll tell you when the new NYClips are out.</p>
+        <form class="form" onsubmit="return signUp(this);">
+          <p><label>Your name</label><input type="text" name="name"></p>
+          <p><label>Your email</label><input type="email" name="email"></p>
+          <p><input class="btn" type="submit" value="Submit"></p>
+        </form>
+      </div>
+<script>
+function signUp(f) {
+  var v = f.email.value || "";
+  if (!/\S+@\S+\.\S+/.test(v)) {
+    alert("Please make sure your email address is in the format yourname@company.com.");
+    return false;
+  }
+  alert("Thanks! You’re on the list.");
+  return false;
+}
+</script>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="footer">
+        <span class="copy">&copy; 2026 NYClip</span>
+        <a href="index.html">Home</a> -
+        <a href="signup.html">Sign Up</a> -
+        <a href="games.html">All Games</a> -
+        <a href="about.html">About Us</a> -
+        <a href="send.html">Send To A Friend</a>
+      </div>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
