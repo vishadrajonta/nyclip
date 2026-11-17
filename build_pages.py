@@ -117,7 +117,7 @@ def header(here=""):
       {awning()}
       <div class="mast">
         <h1><a href="index.html">NYClip</a></h1>
-        <div class="tag">funny free games about life in the city</div>
+        <div class="tag">nothing's equivalent to the N.Y. state of mind &mdash; Nas</div>
       </div>
       <div class="skyline">
         <img src="{asset('img/skyline.png')}" alt="New York skyline" width="800" height="100">
