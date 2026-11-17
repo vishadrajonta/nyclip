@@ -3,7 +3,7 @@
 import os, html as htmllib, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "3"
+V = "4"
 
 def asset(path):
     return f"{path}?v={V}"
@@ -19,6 +19,17 @@ GAMES = [
         "col": "left",
         "place": "on the 6",
         "thumb": "thumb-md",
+    },
+    {
+        "id": "midtown-drive",
+        "title": "Midtown Drive",
+        "blurb": "Twenty-five blocks of Midtown, 33rd to 57th. Race the other cabs for a fare uptown, or take a free drive. These cabs are heavy, so don’t brake in the corner.",
+        "playable": True,
+        "col": "new",
+        "place": "Midtown, 33rd to 57th",
+        "page": "midtown-drive.html",
+        "hint": "Opens in its own page. Arrow keys or WASD to drive.",
+        "thumb": "thumb-lg",
     },
     {
         "id": "everything-bagel",
@@ -118,7 +129,7 @@ def header(here=""):
       <div class="marquee-bar">
         <table cellspacing="0" cellpadding="0"><tr>
           <td class="svc-label">SERVICE CHANGE</td>
-          <td><marquee behavior="alternate" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Everything Bagel and Rooftop Run are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
+          <td><marquee behavior="alternate" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Everything Bagel, Rooftop Run, and Midtown Drive are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
         </tr></table>
       </div>
     </td>
@@ -358,7 +369,7 @@ def games_page():
     body = f'''      <div class="inner">
         <div class="stationsign"><span class="bullet b-6">6</span>ALL GAMES</div>
         <h1>All Games</h1>
-        <p>The full list. Two of them you can play right now. The others are delayed. Check back.</p>
+        <p>The full list. Three of them you can play right now. The others are delayed. Check back.</p>
         <table class="gamelist" cellspacing="0" cellpadding="0">
 {"".join(rows)}
         </table>
@@ -374,6 +385,7 @@ def game_pages_js():
             "place": g.get("place", ""),
             "playable": g["playable"],
             "script": g.get("script", ""),
+            "page": g.get("page", ""),
             "hint": g.get("hint", ""),
         }
         for g in GAMES
@@ -396,10 +408,12 @@ var GAMES = {data};
   }}
   document.title = g.title + " - NYClip";
   var play;
-  if (g.playable) {{
+  if (g.page) {{
+    play = '<div class="playbox"><div class="coming"><b>This one needs the whole window.</b><br><br><a href="' + g.page + '" style="white-space:nowrap">Play ' + g.title + '</a><div class="hint" style="margin-top:8px">' + g.hint + '</div></div></div>';
+  }} else if (g.playable) {{
     play = '<div class="playbox"><canvas id="game" width="520" height="340"></canvas><div class="hint">' + g.hint + '</div></div>';
   }} else {{
-    play = '<div class="playbox"><div class="coming"><b>This game is still in the shop.</b><br><br>The picture and the blurb are here. The game itself is coming in a later draft. In the meantime, try <a href="game.html?id=everything-bagel" style="white-space:nowrap">Everything Bagel</a> or <a href="game.html?id=rooftop-run" style="white-space:nowrap">Rooftop Run</a>.</div></div>';
+    play = '<div class="playbox"><div class="coming"><b>This game is still in the shop.</b><br><br>The picture and the blurb are here. The game itself is coming in a later draft. In the meantime, try <a href="game.html?id=everything-bagel" style="white-space:nowrap">Everything Bagel</a>, <a href="game.html?id=rooftop-run" style="white-space:nowrap">Rooftop Run</a>, or <a href="game.html?id=midtown-drive" style="white-space:nowrap">Midtown Drive</a>.</div></div>';
   }}
   var place = g.place ? '<div class="place">' + g.place + '</div>' : '';
   box.innerHTML =
