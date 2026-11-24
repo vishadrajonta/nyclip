@@ -3,7 +3,7 @@
 import os, html as htmllib, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "6"
+V = "7"
 
 def asset(path):
     return f"{path}?v={V}"
@@ -21,15 +21,15 @@ GAMES = [
         "thumb": "thumb-md",
     },
     {
-        "id": "bootleg-or-legit",
-        "title": "Bootleg or Legit?",
-        "blurb": "One of these came off a folding table on Canal Street. Pick the real logo before the guy with the duffel bag folds up the table.",
+        "id": "logo-builder",
+        "title": "Logo Builder",
+        "blurb": "The Yankees N is on the floor and the Y is upside down. Put the logo back together and we’ll tell you how close you got.",
         "playable": True,
         "col": "new",
-        "place": "Canal Street",
-        "script": asset("js/logo-check.js"),
+        "place": "the merch table",
+        "script": asset("js/logo-builder.js"),
         "dom": True,
-        "hint": "Click the real one. Ten rounds. No refunds, no receipts, no talking to the vendor.",
+        "hint": "Drag the pieces. Click one, then rotate (Q / E) and scale (− / =). Press Done when you think you’ve got it.",
         "thumb": "thumb-lg",
     },
     {
@@ -123,7 +123,7 @@ def header(here=""):
       <div class="marquee-bar">
         <table cellspacing="0" cellpadding="0"><tr>
           <td class="svc-label">SERVICE CHANGE</td>
-          <td><marquee behavior="scroll" direction="left" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Bootleg or Legit?, Midtown Drive, Everything Bagel, and Rooftop Run are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
+          <td><marquee behavior="scroll" direction="left" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Logo Builder, Midtown Drive, Everything Bagel, and Rooftop Run are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
         </tr></table>
       </div>
     </td>
@@ -408,7 +408,7 @@ GUESTBOOK = [
     ("Jul 19, 2002", "missed_the_L", "Williamsburg",
      "Does anyone else's loft have a skylight, a DJ, and no kitchen? Asking for a roommate who is a brand. He is 24 and already retiring from being 24. He said this site is 'so now' and then asked what year it is."),
     ("Sep 1, 2002", "path_not_mta", "Jersey City",
-     "I will not apologize for the Devils. I will apologize for the PATH at 1 a.m. Different crimes. If Bootleg or Legit? has a wrong Devils logo I am taking the tunnel anyway."),
+     "I will not apologize for the Devils. I will apologize for the PATH at 1 a.m. Different crimes. If Logo Builder has me putting the Devils logo together I am taking the tunnel anyway."),
     ("Feb 14, 2003", "swipe_mystic", "Jackson Heights",
      "Swiped three times, the turnstile said please enjoy your trip, and then it didn't open. This is between me and God and the 7 train. I am signing the guestbook from the booth, where a man is selling me a new card that is also dying."),
     ("Jun 29, 2003", "midtownFare", "Hell's Kitchen",
@@ -494,7 +494,7 @@ var GAMES = {data};
   }} else if (g.playable) {{
     play = '<div class="playbox"><canvas id="game" width="520" height="340"></canvas><div class="hint">' + g.hint + '</div></div>';
   }} else {{
-    play = '<div class="playbox"><div class="coming"><b>This game is still in the shop.</b><br><br>The picture and the blurb are here. The game itself is coming in a later draft. In the meantime, try <a href="game.html?id=bootleg-or-legit" style="white-space:nowrap">Bootleg or Legit?</a>, <a href="game.html?id=midtown-drive" style="white-space:nowrap">Midtown Drive</a>, <a href="game.html?id=everything-bagel" style="white-space:nowrap">Everything Bagel</a>, or <a href="game.html?id=rooftop-run" style="white-space:nowrap">Rooftop Run</a>.</div></div>';
+    play = '<div class="playbox"><div class="coming"><b>This game is still in the shop.</b><br><br>The picture and the blurb are here. The game itself is coming in a later draft. In the meantime, try <a href="game.html?id=logo-builder" style="white-space:nowrap">Logo Builder</a>, <a href="game.html?id=midtown-drive" style="white-space:nowrap">Midtown Drive</a>, <a href="game.html?id=everything-bagel" style="white-space:nowrap">Everything Bagel</a>, or <a href="game.html?id=rooftop-run" style="white-space:nowrap">Rooftop Run</a>.</div></div>';
   }}
   var place = g.place ? '<div class="place">' + g.place + '</div>' : '';
   box.innerHTML =

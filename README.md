@@ -2,7 +2,7 @@
 
 A first-draft games site about everyday life in New York City. Early-2000s web page, subway signs, a skyline, short funny blurbs. Blue, white, and orange.
 
-Playable in the browser: **Bootleg or Legit?**, **Midtown Drive**, **Everything Bagel**, and **Rooftop Run**. The rest are still in the shop.
+Playable in the browser: **Logo Builder**, **Midtown Drive**, **Everything Bagel**, and **Rooftop Run**. The rest are still in the shop.
 
 There is also a guestbook and, on the first visit, a fake dial-up intro.
 
