@@ -5,8 +5,8 @@
   <title>Game - NYC.exe</title>
   <meta name="description" content="NYC.exe: funny free games about life in New York City. Send them to a friend or put them on your website.">
   <meta name="viewport" content="width=800">
-  <link rel="stylesheet" href="css/nyc.css?v=8">
-  <link rel="icon" type="image/png" href="img/favicon.png?v=8">
+  <link rel="stylesheet" href="css/nyc.css?v=9">
+  <link rel="icon" type="image/png" href="img/favicon.png?v=9">
 </head>
 <body>
 <table class="page" cellspacing="0" cellpadding="0" align="center">
@@ -18,7 +18,7 @@
         <div class="tag">nothing's equivalent to the N.Y. state of mind &mdash; Nas</div>
       </div>
       <div class="skyline">
-        <img src="img/skyline.png?v=8" alt="New York skyline" width="800" height="100">
+        <img src="img/skyline.png?v=9" alt="New York skyline" width="800" height="100">
       </div>
       <div class="navwrap">
         <table class="nav" align="center" cellspacing="0" cellpadding="0"><tr><td><a href="index.html"><span class="bullet b-1">1</span><br>Home</a></td><td><a href="games.html" class="here"><span class="bullet b-6">6</span><br>All Games</a></td><td><a href="guestbook.html"><span class="bullet b-G">G</span><br>Guestbook</a></td><td><a href="signup.html"><span class="bullet b-N">N</span><br>Sign Up</a></td><td><a href="send.html"><span class="bullet b-A">A</span><br>Send</a></td><td><a href="about.html"><span class="bullet b-7">7</span><br>About</a></td></tr></table>
@@ -35,7 +35,7 @@
     <td>
       <div class="inner" id="box"></div>
 <script>
-var GAMES = [{"id": "subway-shuffle", "title": "Subway Shuffle", "blurb": "Don\u2019t miss your stop", "playable": false, "place": "on the 6", "script": "", "hint": "", "embed": "", "dom": false}, {"id": "logo-builder", "title": "Logo Builder", "blurb": "The Yankees N is on the floor and the Y is upside down. Put the interlocking NY back together and we\u2019ll tell you how close you got.", "playable": true, "place": "the merch table", "script": "js/logo-builder.js?v=8", "hint": "Drag the N and the Y onto the navy square. Click a piece to select it, then scale and rotate it. Hit Check when you think they interlock.", "embed": "", "dom": true}, {"id": "midtown-drive", "title": "Midtown Drive", "blurb": "Twenty-five blocks of Midtown, 33rd to 57th. Race the other cabs for a fare uptown, or take a free drive. These cabs are heavy, so don\u2019t brake in the corner.", "playable": true, "place": "Midtown, 33rd to 57th", "script": "", "hint": "Click the game, then use arrow keys or WASD. Space is the hand brake.", "embed": "midtown-drive.html", "dom": false}, {"id": "everything-bagel", "title": "Everything Bagel", "blurb": "You\u2019re working rush hour at the trendy local bagel shop - catch toppings as they fall and don\u2019t mess up any orders!", "playable": true, "place": "the bagel shop", "script": "js/bagel.js?v=8", "hint": "Arrow keys or the mouse move the bagel. Catch only what the ticket says.", "embed": "", "dom": false}, {"id": "rooftop-run", "title": "Rooftop Run", "blurb": "Cross Midtown without touching the ground.", "playable": true, "place": "Midtown", "script": "js/rooftop.js?v=8", "hint": "Space bar or click to jump. Don\u2019t touch the street.", "embed": "", "dom": false}, {"id": "coffee-regular", "title": "Coffee Regular", "blurb": "A regular means milk and sugar. Say latte at the cart and you\u2019re walking to the next one.", "playable": false, "place": "the corner cart", "script": "", "hint": "", "embed": "", "dom": false}];
+var GAMES = [{"id": "subway-shuffle", "title": "Subway Shuffle", "blurb": "Don\u2019t miss your stop", "playable": false, "place": "on the 6", "script": "", "hint": "", "embed": "", "dom": false}, {"id": "logo-builder", "title": "Logo Builder", "blurb": "The Yankees N is on the floor and the Y is upside down. Put the interlocking NY back together and we\u2019ll tell you how close you got.", "playable": true, "place": "the merch table", "script": "js/logo-builder.js?v=9", "hint": "Drag the N and the Y onto the navy square. Click a piece to select it, then scale and rotate it. Hit Check when you think they interlock.", "embed": "", "dom": true}, {"id": "midtown-drive", "title": "Midtown Drive", "blurb": "Twenty-five blocks of Midtown, 33rd to 57th. Race the other cabs for a fare uptown, or take a free drive. These cabs are heavy, so don\u2019t brake in the corner.", "playable": true, "place": "Midtown, 33rd to 57th", "script": "", "hint": "Click the game, then use arrow keys or WASD. Space is the hand brake.", "embed": "midtown-drive.html", "dom": false}, {"id": "everything-bagel", "title": "Everything Bagel", "blurb": "You\u2019re working rush hour at the trendy local bagel shop - catch toppings as they fall and don\u2019t mess up any orders!", "playable": true, "place": "the bagel shop", "script": "js/bagel.js?v=9", "hint": "Arrow keys or the mouse move the bagel. Catch only what the ticket says.", "embed": "", "dom": false}, {"id": "rooftop-run", "title": "Rooftop Run", "blurb": "Cross Midtown without touching the ground.", "playable": true, "place": "Midtown", "script": "js/rooftop.js?v=9", "hint": "Space bar or click to jump. Don\u2019t touch the street.", "embed": "", "dom": false}, {"id": "coffee-regular", "title": "Coffee Regular", "blurb": "A regular means milk and sugar. Say latte at the cart and you\u2019re walking to the next one.", "playable": false, "place": "the corner cart", "script": "", "hint": "", "embed": "", "dom": false}];
 (function(){
   var q = location.search.match(/id=([^&]+)/);
   var id = q ? decodeURIComponent(q[1]) : "";
@@ -62,7 +62,7 @@ var GAMES = [{"id": "subway-shuffle", "title": "Subway Shuffle", "blurb": "Don\u
   box.innerHTML =
     '<div class="stationsign"><span class="bullet b-6">6</span>NOW PLAYING</div>' +
     '<table class="gamehead" cellspacing="0" cellpadding="0"><tr>' +
-    '<td style="width:140px"><img src="img/thumbs/' + g.id + '.png?v=8" alt=""></td>' +
+    '<td style="width:140px"><img src="img/thumbs/' + g.id + '.png?v=9" alt=""></td>' +
     '<td><h1>' + g.title + '</h1>' + place + '<div class="blurb-lg">' + g.blurb + '</div>' +
     '<a class="sendlink" href="send.html?game=' + g.id + '">send to a friend</a>' +
     ' &nbsp; <a class="sendlink" href="games.html">list all games</a></td></tr></table>' +

@@ -3,7 +3,7 @@
 import os, html as htmllib, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "8"
+V = "9"
 
 def asset(path):
     return f"{path}?v={V}"

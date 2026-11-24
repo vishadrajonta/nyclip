@@ -533,12 +533,13 @@ img { border: 0; }
 }
 .lg-scale input { width: 120px; }
 .lg-compare {
-  display: flex;
+  display: none;
   gap: 10px;
   justify-content: center;
   align-items: stretch;
   margin: 6px 0;
 }
+.lg-compare.show { display: flex; }
 .lg-pane {
   border: 2px solid #003da5;
   background: #172446;

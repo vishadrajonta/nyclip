@@ -175,6 +175,7 @@
     const compare = document.createElement("div");
     compare.className = "lg-compare";
     compare.hidden = true;
+    compare.classList.remove('show');
     compare.innerHTML =
       '<div class="lg-pane"><div class="lg-pane-h">Yours</div><div class="lg-mini" id="lg-yours"></div></div>' +
       '<div class="lg-pane"><div class="lg-pane-h">The real one</div><div class="lg-mini" id="lg-real"></div></div>';
@@ -343,6 +344,7 @@
   function scramble(preset) {
     locked = false;
     selected = null;
+    els.compare.classList.remove('show');
     els.compare.hidden = true;
     els.fb.innerHTML = "";
     els.check.hidden = false;
@@ -351,23 +353,25 @@
     const w = r.width, h = r.height;
     const cx = w / 2, cy = h / 2;
     if (preset === "start") {
-      pieces.N.x = Math.max(70, cx - TARGET / 2 - 90);
-      pieces.N.y = cy + 20;
-      pieces.N.s = 0.32;
-      pieces.N.r = -38.4;
-      pieces.Y.x = Math.min(w - 70, cx + TARGET / 2 + 80);
-      pieces.Y.y = cy - 10;
-      pieces.Y.s = 0.55;
-      pieces.Y.r = 51.7;
+      pieces.N.s = 0.24;
+      pieces.N.r = -32;
+      pieces.Y.s = 0.22;
+      pieces.Y.r = 48;
+      var nReach = Math.hypot(pieces.N.vb[2], pieces.N.vb[3]) / 2 * pieces.N.s;
+      var yReach = Math.hypot(pieces.Y.vb[2], pieces.Y.vb[3]) / 2 * pieces.Y.s;
+      pieces.N.x = Math.max(nReach + 10, (cx - TARGET / 2) / 2);
+      pieces.Y.x = Math.min(w - yReach - 10, cx + TARGET / 2 + (w - (cx + TARGET / 2)) / 2);
+      pieces.N.y = cy + 36;
+      pieces.Y.y = cy - 20;
     } else if (preset === "near") {
-      placeCorrect(0.48, 0, cx, cy);
+      placeCorrect(0.40, 0, cx, cy);
       // nudge: a few degrees, a slight offset, tiny scale mismatch
       pieces.N.r = -2.4;
       pieces.Y.r = 1.8;
-      pieces.Y.x += 4;
-      pieces.Y.y -= 3;
-      pieces.N.s = 0.47;
-      pieces.Y.s = 0.49;
+      pieces.Y.x += 3;
+      pieces.Y.y -= 2;
+      pieces.N.s = 0.39;
+      pieces.Y.s = 0.41;
     } else {
       // random, clearly outside the square
       const nLeft = Math.random() < 0.5;
@@ -383,10 +387,10 @@
       // keep them out of the target if they landed inside
       bumpOut(pieces.N, cx, cy, w, h);
       bumpOut(pieces.Y, cx, cy, w, h);
-      pieces.N.s = 0.22 + Math.random() * 0.45;
-      pieces.Y.s = 0.22 + Math.random() * 0.45;
+      pieces.N.s = 0.20 + Math.random() * 0.16;
+      pieces.Y.s = 0.18 + Math.random() * 0.16;
       // different scales
-      if (Math.abs(pieces.N.s - pieces.Y.s) < 0.08) pieces.Y.s = clamp(pieces.Y.s + 0.18, 0.18, 1.1);
+      if (Math.abs(pieces.N.s - pieces.Y.s) < 0.06) pieces.Y.s = clamp(pieces.Y.s + 0.10, 0.18, 0.40);
       pieces.N.r = Math.random() * 360 - 180;
       pieces.Y.r = Math.random() * 360 - 180;
     }
@@ -429,6 +433,7 @@
     els.fb.innerHTML =
       '<div class="lg-score">' + pct + "%</div>" +
       '<div class="lg-verdict">' + verdict(sc.total) + "</div>";
+    els.compare.classList.add('show');
     els.compare.hidden = false;
     drawCompare();
     paint();
