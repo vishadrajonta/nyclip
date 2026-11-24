@@ -3,13 +3,13 @@
 import os, html as htmllib, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "5"
+V = "6"
 
 def asset(path):
     return f"{path}?v={V}"
 
 
-# Four Figma example blurbs stay verbatim. Two extras kept from the first draft.
+# Figma example blurbs for Subway Shuffle, Everything Bagel, and Rooftop Run stay verbatim.
 GAMES = [
     {
         "id": "subway-shuffle",
@@ -21,14 +21,26 @@ GAMES = [
         "thumb": "thumb-md",
     },
     {
+        "id": "bootleg-or-legit",
+        "title": "Bootleg or Legit?",
+        "blurb": "One of these came off a folding table on Canal Street. Pick the real logo before the guy with the duffel bag folds up the table.",
+        "playable": True,
+        "col": "new",
+        "place": "Canal Street",
+        "script": asset("js/logo-check.js"),
+        "dom": True,
+        "hint": "Click the real one. Ten rounds. No refunds, no receipts, no talking to the vendor.",
+        "thumb": "thumb-lg",
+    },
+    {
         "id": "midtown-drive",
         "title": "Midtown Drive",
         "blurb": "Twenty-five blocks of Midtown, 33rd to 57th. Race the other cabs for a fare uptown, or take a free drive. These cabs are heavy, so don’t brake in the corner.",
         "playable": True,
         "col": "new",
         "place": "Midtown, 33rd to 57th",
-        "page": "midtown-drive.html",
-        "hint": "Opens in its own page. Arrow keys or WASD to drive.",
+        "embed": "midtown-drive.html",
+        "hint": "Click the game, then use arrow keys or WASD. Space is the hand brake.",
         "thumb": "thumb-lg",
     },
     {
@@ -54,15 +66,6 @@ GAMES = [
         "thumb": "thumb-md",
     },
     {
-        "id": "taxi-dash",
-        "title": "Taxi Dash",
-        "blurb": "A fare is waiting uptown and five other cabs want it. Get there first and step on it!",
-        "playable": False,
-        "col": "left",
-        "place": "uptown",
-        "thumb": "thumb-lg",
-    },
-    {
         "id": "coffee-regular",
         "title": "Coffee Regular",
         "blurb": "A regular means milk and sugar. Say latte at the cart and you’re walking to the next one.",
@@ -71,32 +74,24 @@ GAMES = [
         "place": "the corner cart",
         "thumb": "thumb-sm",
     },
-    {
-        "id": "metrocard-swipe",
-        "title": "MetroCard Swipe",
-        "blurb": "The turnstile is hungry and your card is dying. Swipe it right, or get in line for a new one.",
-        "playable": False,
-        "col": "left",
-        "place": "every station",
-        "thumb": "thumb-md",
-    },
 ]
 
 def esc(s):
     return htmllib.escape(s, quote=True)
 
 def awning():
-    # slightly uneven red / green bodega stripes
+    # slightly uneven blue / orange stripes
     widths = [18, 22, 16, 24, 19, 21, 17, 23, 20, 18, 22, 16, 25, 19, 21, 17, 23, 20, 18, 22, 16, 24, 19, 21, 20, 18, 22, 17, 23, 19, 21, 16, 24, 20]
     cells = []
     for i, w in enumerate(widths):
-        color = "#cc1f2e" if i % 2 == 0 else "#1f7a3a"
+        color = "#003da5" if i % 2 == 0 else "#ff6600"
         cells.append(f'<td bgcolor="{color}" width="{w}">&nbsp;</td>')
     return '<div class="awning"><table cellspacing="0" cellpadding="0"><tr>' + "".join(cells) + "</tr></table></div>"
 
 NAV = [
     ("index.html", "Home", "home", "1", "b-1"),
     ("games.html", "All Games", "games", "6", "b-6"),
+    ("guestbook.html", "Guestbook", "guestbook", "G", "b-G"),
     ("signup.html", "Sign Up", "signup", "N", "b-N"),
     ("send.html", "Send", "send", "A", "b-A"),
     ("about.html", "About", "about", "7", "b-7"),
@@ -116,7 +111,7 @@ def header(here=""):
     <td>
       {awning()}
       <div class="mast">
-        <h1><a href="index.html">NYClip</a></h1>
+        <h1><a href="index.html">NYC.exe</a></h1>
         <div class="tag">nothing's equivalent to the N.Y. state of mind &mdash; Nas</div>
       </div>
       <div class="skyline">
@@ -128,7 +123,7 @@ def header(here=""):
       <div class="marquee-bar">
         <table cellspacing="0" cellpadding="0"><tr>
           <td class="svc-label">SERVICE CHANGE</td>
-          <td><marquee behavior="scroll" direction="left" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Everything Bagel, Rooftop Run, and Midtown Drive are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
+          <td><marquee behavior="scroll" direction="left" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Bootleg or Legit?, Midtown Drive, Everything Bagel, and Rooftop Run are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
         </tr></table>
       </div>
     </td>
@@ -139,28 +134,29 @@ def footer():
     <td>
       <div class="bestview">Best viewed in 800×600 with Internet Explorer or Netscape Navigator.</div>
       <div class="footer">
-        <span class="copy">&copy; 2026 NYClip</span>
+        <span class="copy">&copy; 2026 NYC.exe</span>
         <a href="index.html">Home</a> &nbsp;·&nbsp;
         <a href="games.html">All Games</a> &nbsp;·&nbsp;
+        <a href="guestbook.html">Guestbook</a> &nbsp;·&nbsp;
         <a href="signup.html">Sign Up</a> &nbsp;·&nbsp;
         <a href="about.html">About</a> &nbsp;·&nbsp;
         <a href="send.html">Send to a friend</a>
-        <div class="please">Stand clear of the closing doors, please. Last updated November 17, 2026.</div>
+        <div class="please">Stand clear of the closing doors, please. Last updated November 24, 2026.</div>
       </div>
     </td>
   </tr>'''
 
-def page(title, body, here=""):
+def page(title, body, here="", extra_head=""):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>{esc(title)}</title>
-  <meta name="description" content="NYClip: funny free games about life in New York City. Send them to a friend or put them on your website.">
+  <meta name="description" content="NYC.exe: funny free games about life in New York City. Send them to a friend or put them on your website.">
   <meta name="viewport" content="width=800">
   <link rel="stylesheet" href="{asset("css/nyc.css")}">
   <link rel="icon" type="image/png" href="{asset("img/favicon.png")}">
-</head>
+{extra_head}</head>
 <body>
 <table class="page" cellspacing="0" cellpadding="0" align="center">
 {header(here)}
@@ -181,7 +177,7 @@ def game_row(g, show_send=True):
     place = f'<div class="place">{esc(g["place"])}</div>' if g.get("place") else ""
     return f'''        <table class="gamerow" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="thumb {g.get("thumb","thumb-md")}"><a href="game.html?id={g["id"]}"><img src="{asset('img/thumbs/' + g['id'] + '.png')}" alt="{esc(g["title"])}"></a></td>
+            <td class="thumb {g.get("thumb","thumb-md")}"><a href="game.html?id={g["id"]}"><img src="{asset("img/thumbs/" + g["id"] + ".png")}" alt="{esc(g["title"])}"></a></td>
             <td>
               <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>{tag}
               {place}
@@ -205,6 +201,25 @@ def counter(num="002847"):
               {imgs}
             </div>'''
 
+def dialup_overlay():
+    return f'''<div id="dialup" class="dialup">
+  <div class="dialwin">
+    <div class="dialtitle">Connecting to NYC.exe</div>
+    <div class="dialbody">
+      <p class="dialfine">New York Online  •  Local access: 718</p>
+      <p id="dialstatus">Ready to dial the city.<br>Click Connect when you hear the modem. Or say you do.</p>
+      <div class="dialbar"><div id="dialprog"></div></div>
+      <div class="dialbtns">
+        <a href="#" id="dialskip">Skip</a>
+        <button type="button" id="dialconnect">Connect</button>
+      </div>
+    </div>
+  </div>
+  <audio id="dialaudio" src="{asset("audio/modem.wav")}" preload="auto"></audio>
+</div>
+<script src="{asset("js/dialup.js")}"></script>
+'''
+
 def index():
     left = [g for g in GAMES if g["col"] == "left"]
     news = [g for g in GAMES if g["col"] == "new"]
@@ -214,11 +229,12 @@ def index():
         new_html += f'''
           <div class="newblock">
             <div class="newflag">NEW!</div>
-            <a href="game.html?id={g["id"]}"><img src="{asset('img/thumbs/' + g['id'] + '.png')}" alt="{esc(g["title"])}"></a><br>
+            <a href="game.html?id={g["id"]}"><img src="{asset("img/thumbs/" + g["id"] + ".png")}" alt="{esc(g["title"])}"></a><br>
             <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>
             <div class="place">{esc(g["place"])}</div>
           </div>'''
-    body = f'''      <table class="cols" cellspacing="0" cellpadding="0">
+    body = f'''      {dialup_overlay()}
+      <table class="cols" cellspacing="0" cellpadding="0">
         <tr>
           <td class="col-left">
             <div class="stationsign"><span class="bullet b-6">6</span>GAMES</div>
@@ -230,18 +246,18 @@ def index():
           </td>
           <td class="col-mid">
             <div class="welcome">
-              <h2>Welcome to NYClip</h2>
+              <h2>Welcome to NYC.exe</h2>
               <p>Funny free games about life in New York City. Send them to your friends or put them on your website. Mind the gap.</p>
             </div>
 {new_html}
             <div class="mail">
               <h3>Join the FREE mailing list</h3>
               <form action="signup.html" method="get" onsubmit="return checkMail(this);">
-                <input type="email" name="email">
+                <input type="text" name="email" size="18">
                 <br>
-                <input class="btn" type="submit" value="Submit">
+                <input type="submit" value="Submit" class="btn">
               </form>
-              <div class="fine">We’ll tell you when the new NYClips are out. No spam, we barely have time to swipe in.</div>
+              <div class="fine">We’ll tell you when the new NYC.exe games are out. No spam, we barely have time to swipe in.</div>
             </div>
           </td>
           <td class="col-right">
@@ -255,22 +271,32 @@ def index():
       </table>
 <script>
 function checkMail(f) {{
-  var v = f.email.value || "";
-  if (!/\\S+@\\S+\\.\\S+/.test(v)) {{
-    alert("Please make sure your email address is in the format yourname@company.com.");
-    return false;
-  }}
-  alert("Thanks! You’ll get the new NYClips when they drop.");
+  var v = f.email.value;
+  if (!v || v.indexOf("@") < 0) {{ alert("Please type a real email address."); return false; }}
+  alert("Thanks! You’ll get the new NYC.exe games when they drop.");
   return false;
 }}
 </script>'''
-    return page("NYClip.com", body, here="home")
+    extra = '''  <script>
+  (function(){
+    var q = /(?:\\?|&)dialup=1(?:&|$)/.test(location.search);
+    var skip = /(?:\\?|&)skipdial=1(?:&|$)/.test(location.search);
+    try {
+      if (skip) sessionStorage.setItem("nyc_exe_connected", "1");
+      if ((skip || sessionStorage.getItem("nyc_exe_connected")) && !q) {
+        document.documentElement.className += " connected";
+      }
+    } catch (e) {}
+  })();
+  </script>
+'''
+    return page("NYC.exe", body, here="home", extra_head=extra)
 
 def about():
     body = '''      <div class="inner">
         <div class="stationsign"><span class="bullet b-7">7</span>ABOUT</div>
-        <h1>About NYClip</h1>
-        <p>NYClip is a free games site about everyday life in New York City. Funny little games, short blurbs, pictures you can send to a friend. The kind of site you might have left open in a browser window in 2001.</p>
+        <h1>About NYC.exe</h1>
+        <p>NYC.exe is a free games site about everyday life in New York City. Funny little games, short blurbs, pictures you can send to a friend. The kind of site you might have left open in a browser window in 2001.</p>
         <p>It started as a school project: a sister site to the old MiniClip homepage. That first version had jokey copy next to each game and tightly cropped pictures of the characters. A later version of the site was mostly lists — latest, hot, A to Z, every game they had. This draft tries to keep both of those things, only every game is about life in the city.</p>
         <p>Some of the games you can play now. The rest are still in the shop.</p>
         <h2>A couple of questions</h2>
@@ -281,72 +307,61 @@ def about():
         </ul>
         <p>If you want your game on the site, send a note through the <a href="send.html">send to a friend</a> page and say so in the message. No promises, but we’ll look.</p>
       </div>'''
-    return page("About Us - NYClip", body, here="about")
+    return page("About Us - NYC.exe", body, here="about")
 
 def signup():
     body = '''      <div class="inner">
         <div class="stationsign"><span class="bullet b-N">N</span>SIGN UP</div>
         <h1>Sign Up</h1>
-        <p>Join the free mailing list and we’ll tell you when the new NYClips are out.</p>
+        <p>Join the free mailing list and we’ll tell you when the new NYC.exe games are out.</p>
         <form class="form" onsubmit="return signUp(this);">
           <p><label>Your name</label><input type="text" name="name"></p>
-          <p><label>Your email</label><input type="email" name="email"></p>
-          <p><input class="btn" type="submit" value="Submit"></p>
+          <p><label>Email</label><input type="text" name="email"></p>
+          <p><input type="submit" value="Sign me up" class="btn"></p>
         </form>
       </div>
 <script>
 function signUp(f) {
-  var v = f.email.value || "";
-  if (!/\\S+@\\S+\\.\\S+/.test(v)) {
-    alert("Please make sure your email address is in the format yourname@company.com.");
-    return false;
-  }
-  alert("Thanks! You’re on the list.");
+  if (!f.email.value || f.email.value.indexOf("@") < 0) { alert("Please type a real email address."); return false; }
+  alert("Thanks! You’ll get the new NYC.exe games when they drop.");
   return false;
 }
 </script>'''
-    return page("Sign Up - NYClip", body, here="signup")
+    return page("Sign Up - NYC.exe", body, here="signup")
 
 def send_page():
     opts = "\n".join(f'            <option value="{g["id"]}">{esc(g["title"])}</option>' for g in GAMES)
     body = f'''      <div class="inner">
         <div class="stationsign"><span class="bullet b-A">A</span>SEND TO A FRIEND</div>
         <h1>Send To A Friend</h1>
-        <p>Send a NYClip to a friend, the old fashioned way.</p>
-        <form class="form" onsubmit="return sendClip(this);">
-          <p><label>Your email</label><input type="email" name="from"></p>
-          <p><label>Your friend’s email</label><input type="email" name="to"></p>
-          <p><label>Which game?</label>
-            <select name="game" id="gameSelect">
+        <p>Send a game from NYC.exe to a friend, the old fashioned way.</p>
+        <form class="form" onsubmit="return sendIt(this);">
+          <p><label>Your name</label><input type="text" name="from"></p>
+          <p><label>Friend’s email</label><input type="text" name="to"></p>
+          <p><label>Which game</label>
+            <select name="game">
 {opts}
             </select>
           </p>
-          <p><label>A short message</label><textarea name="msg"></textarea></p>
-          <p><input class="btn" type="submit" value="Send"></p>
+          <p><label>A short note</label><textarea name="note"></textarea></p>
+          <p><input type="submit" value="Send" class="btn"></p>
         </form>
       </div>
 <script>
-(function() {{
-  var q = new URLSearchParams(location.search);
-  var id = q.get("game");
-  if (id) {{
-    var s = document.getElementById("gameSelect");
-    if (s) s.value = id;
+(function(){{
+  var q = location.search.match(/game=([^&]+)/);
+  if (q) {{
+    var sel = document.querySelector("select[name=game]");
+    if (sel) sel.value = decodeURIComponent(q[1]);
   }}
 }})();
-function sendClip(f) {{
-  var a = f.from.value || "";
-  var b = f.to.value || "";
-  var ok = /\\S+@\\S+\\.\\S+/;
-  if (!ok.test(a) || !ok.test(b)) {{
-    alert("Please make sure both email addresses are in the format yourname@company.com.");
-    return false;
-  }}
-  alert("Your NYClip has been sent! (Or it would have been, if this were 2001.)");
+function sendIt(f) {{
+  if (!f.to.value || f.to.value.indexOf("@") < 0) {{ alert("Please type a real email address."); return false; }}
+  alert("Your NYC.exe game has been sent! (Or it would have been, if this were 2001.)");
   return false;
 }}
 </script>'''
-    return page("Send To A Friend - NYClip", body, here="send")
+    return page("Send To A Friend - NYC.exe", body, here="send")
 
 def games_page():
     rows = []
@@ -356,7 +371,7 @@ def games_page():
             tag = " <span class=\"tag\">you can play this one</span>" if g["playable"] else ""
             place = f'<div class="place">{esc(g["place"])}</div>' if g.get("place") else ""
             cells.append(f'''          <td>
-            <a href="game.html?id={g["id"]}"><img src="{asset('img/thumbs/' + g['id'] + '.png')}" alt="{esc(g["title"])}"></a>
+            <a href="game.html?id={g["id"]}"><img src="{asset("img/thumbs/" + g["id"] + ".png")}" alt="{esc(g["title"])}"></a>
             <a class="gtitle" href="game.html?id={g["id"]}">{esc(g["title"])}</a>{tag}
             {place}
             <span class="blurb">{esc(g["blurb"])}</span>
@@ -368,12 +383,78 @@ def games_page():
     body = f'''      <div class="inner">
         <div class="stationsign"><span class="bullet b-6">6</span>ALL GAMES</div>
         <h1>All Games</h1>
-        <p>The full list. Three of them you can play right now. The others are delayed. Check back.</p>
+        <p>The full list. Four of them you can play right now. The others are delayed. Check back.</p>
         <table class="gamelist" cellspacing="0" cellpadding="0">
 {"".join(rows)}
         </table>
       </div>'''
-    return page("All Games - NYClip", body, here="games")
+    return page("All Games - NYC.exe", body, here="games")
+
+GUESTBOOK = [
+    ("Mar 14, 2001", "xXstoopkingXx", "Bushwick",
+     "Finally a games site that understands the emotional journey of waiting for the 4 and 5 while the 6 comes three times. I rated Subway Shuffle 10/10 and then missed my stop in real life."),
+    ("May 2, 2001", "RegularEddie", "Gramercy",
+     "A regular is milk and sugar. I don't care what they started charging on 2nd Avenue. If I wanted foam I would have moved to Seattle. The cart on my corner still gets it, and so does this website."),
+    ("Jun 18, 2001", "landlady72", "Upper West Side",
+     "To the tenant in 4B: the rent is the rent. The heat is a luxury. Stop leaving notes on the boiler. It can read. Also please stop printing this site at the copy shop on Amsterdam. Ink is not included."),
+    ("Aug 9, 2001", "sir_ratscroft", "Chinatown",
+     "Saw a rat take the F train one stop and get off at East Broadway like he paid. He had a transfer. I did not. Respect is a two-way street and only one of us is winning."),
+    ("Nov 3, 2001", "floor12broker", "Midtown",
+     "Great site. Quick question, is the banner inventory available for a publicly traded elevator company? We are disrupting vertical transit. Synergies. Please advise. Also I live in the office now. The plants are doing fine."),
+    ("Jan 22, 2002", "staten_ferry_dave", "St. George",
+     "Before you ask, yes I am from Staten Island, no I will not fight you, yes the ferry is free, no I am not bringing a car, and Midtown Drive doesn't even go over the bridge, which is honestly on brand."),
+    ("Apr 4, 2002", "bodegaCatManagement", "East Village",
+     "The cat does not work here. The cat is middle management. You will receive your bacon egg and cheese when he says so. He has been with the company longer than the register, and the register still has prices from 1996."),
+    ("Jul 19, 2002", "missed_the_L", "Williamsburg",
+     "Does anyone else's loft have a skylight, a DJ, and no kitchen? Asking for a roommate who is a brand. He is 24 and already retiring from being 24. He said this site is 'so now' and then asked what year it is."),
+    ("Sep 1, 2002", "path_not_mta", "Jersey City",
+     "I will not apologize for the Devils. I will apologize for the PATH at 1 a.m. Different crimes. If Bootleg or Legit? has a wrong Devils logo I am taking the tunnel anyway."),
+    ("Feb 14, 2003", "swipe_mystic", "Jackson Heights",
+     "Swiped three times, the turnstile said please enjoy your trip, and then it didn't open. This is between me and God and the 7 train. I am signing the guestbook from the booth, where a man is selling me a new card that is also dying."),
+    ("Jun 29, 2003", "midtownFare", "Hell's Kitchen",
+     "Played Midtown Drive. Hit every yellow cab on 11th Avenue on purpose. In this economy they would have cut me off anyway. The fare was going to JFK in their mind and to 57th Street in mine."),
+    ("Oct 11, 2003", "canal.wholesale", "Chinatown",
+     "Those Yankees hats on the table are real. The realness is a sliding scale. $10 cash, I don't make change, I don't take questions, I was never here, and if you pick the wrong one in the game that is a you problem."),
+    ("Mar 8, 2004", "not_a_tourist", "Times Square",
+     "If anyone needs directions I can point you to the museum that is actually a store, the store that is actually a museum, and a two-hour line for a pretzel that costs as much as my first apartment, which was also a store."),
+    ("Aug 21, 2004", "alternateSideAngel", "Park Slope",
+     "Moved the car at 8:59, circled until 11, found a legal spot in another borough, and still got a ticket from a sign that was facing the trees. 10/10 authentic New York gaming. Would play again, already have to tomorrow."),
+]
+
+def guestbook():
+    rows = []
+    for i, (when, who, where, msg) in enumerate(GUESTBOOK):
+        alt = ' class="alt"' if i % 2 else ""
+        rows.append(
+            f'        <tr{alt}><td class="when">{esc(when)}</td><td><div class="who">{esc(who)}</div>'
+            f'<div class="where">{esc(where)}</div></td><td>{esc(msg)}</td></tr>'
+        )
+    body = f'''      <div class="inner">
+        <div class="stationsign"><span class="bullet b-G">G</span>GUESTBOOK</div>
+        <h1>Guestbook</h1>
+        <p>People keep leaving notes. We keep them in the order they arrived, more or less. Frank downstairs says he is “watching the inbox.”</p>
+        <table class="gbook" cellspacing="0" cellpadding="0">
+          <tr><th>Date</th><th>From</th><th>Message</th></tr>
+{chr(10).join(rows)}
+        </table>
+        <div class="powered">Powered by GuestWorld 3.1 &nbsp;·&nbsp; You are visitor number 002847 &nbsp;·&nbsp; Please keep it clean (Frank’s rule, not ours)</div>
+        <div class="gbsign">
+          <h2>Sign the guestbook</h2>
+          <form class="form" onsubmit="return signGuest(this);">
+            <p><label>Handle</label><input type="text" name="handle"></p>
+            <p><label>Neighborhood</label><input type="text" name="place"></p>
+            <p><label>Your message</label><textarea name="msg"></textarea></p>
+            <p><input type="submit" value="Sign the book" class="btn"></p>
+          </form>
+        </div>
+      </div>
+<script>
+function signGuest(f) {{
+  alert("Thanks. Your entry has been sent to a guy named Frank who hasn't checked this inbox since 2002. Try again never.");
+  return false;
+}}
+</script>'''
+    return page("Guestbook - NYC.exe", body, here="guestbook")
 
 def game_pages_js():
     data = json.dumps([
@@ -381,38 +462,39 @@ def game_pages_js():
             "id": g["id"],
             "title": g["title"],
             "blurb": g["blurb"],
-            "place": g.get("place", ""),
             "playable": g["playable"],
+            "place": g.get("place", ""),
             "script": g.get("script", ""),
-            "page": g.get("page", ""),
             "hint": g.get("hint", ""),
+            "embed": g.get("embed", ""),
+            "dom": g.get("dom", False),
         }
         for g in GAMES
-    ], ensure_ascii=False)
-    body = f'''      <div class="inner" id="gamepage">
-        <p>Loading…</p>
-      </div>
+    ])
+    body = f'''      <div class="inner" id="box"></div>
 <script>
 var GAMES = {data};
-(function () {{
-  var q = new URLSearchParams(location.search);
-  var id = q.get("id");
-  var g = null;
-  for (var i = 0; i < GAMES.length; i++) if (GAMES[i].id === id) g = GAMES[i];
-  var box = document.getElementById("gamepage");
+(function(){{
+  var q = location.search.match(/id=([^&]+)/);
+  var id = q ? decodeURIComponent(q[1]) : "";
+  var g = null, i;
+  for (i = 0; i < GAMES.length; i++) if (GAMES[i].id === id) g = GAMES[i];
+  var box = document.getElementById("box");
   if (!g) {{
-    box.innerHTML = "<h1>Game not found</h1><p>That clip isn’t on the site. See the <a href=\\"games.html\\">full list</a>.</p>";
-    document.title = "Game not found - NYClip";
+    document.title = "Game not found - NYC.exe";
+    box.innerHTML = '<div class="stationsign"><span class="bullet b-6">6</span>NOW PLAYING</div><p>We cannot find that game. It may still be in the shop. <a href="games.html">List all games</a>.</p>';
     return;
   }}
-  document.title = g.title + " - NYClip";
+  document.title = g.title + " - NYC.exe";
   var play;
-  if (g.page) {{
-    play = '<div class="playbox"><div class="coming"><b>This one needs the whole window.</b><br><br><a href="' + g.page + '" style="white-space:nowrap">Play ' + g.title + '</a><div class="hint" style="margin-top:8px">' + g.hint + '</div></div></div>';
+  if (g.embed) {{
+    play = '<div class="playbox"><iframe id="gameframe" class="driveframe" src="' + g.embed + '" width="640" height="420" tabindex="0" title="' + g.title + '"></iframe><div class="hint">' + g.hint + '</div></div>';
+  }} else if (g.playable && g.dom) {{
+    play = '<div class="playbox"><div id="logogame" class="logogame"></div><div class="hint">' + g.hint + '</div></div>';
   }} else if (g.playable) {{
     play = '<div class="playbox"><canvas id="game" width="520" height="340"></canvas><div class="hint">' + g.hint + '</div></div>';
   }} else {{
-    play = '<div class="playbox"><div class="coming"><b>This game is still in the shop.</b><br><br>The picture and the blurb are here. The game itself is coming in a later draft. In the meantime, try <a href="game.html?id=everything-bagel" style="white-space:nowrap">Everything Bagel</a>, <a href="game.html?id=rooftop-run" style="white-space:nowrap">Rooftop Run</a>, or <a href="game.html?id=midtown-drive" style="white-space:nowrap">Midtown Drive</a>.</div></div>';
+    play = '<div class="playbox"><div class="coming"><b>This game is still in the shop.</b><br><br>The picture and the blurb are here. The game itself is coming in a later draft. In the meantime, try <a href="game.html?id=bootleg-or-legit" style="white-space:nowrap">Bootleg or Legit?</a>, <a href="game.html?id=midtown-drive" style="white-space:nowrap">Midtown Drive</a>, <a href="game.html?id=everything-bagel" style="white-space:nowrap">Everything Bagel</a>, or <a href="game.html?id=rooftop-run" style="white-space:nowrap">Rooftop Run</a>.</div></div>';
   }}
   var place = g.place ? '<div class="place">' + g.place + '</div>' : '';
   box.innerHTML =
@@ -423,6 +505,15 @@ var GAMES = {data};
     '<a class="sendlink" href="send.html?game=' + g.id + '">send to a friend</a>' +
     ' &nbsp; <a class="sendlink" href="games.html">list all games</a></td></tr></table>' +
     play;
+  if (g.embed) {{
+    var fr = document.getElementById("gameframe");
+    function focusDrive() {{ try {{ fr.contentWindow.focus(); }} catch (e) {{}} }}
+    if (fr) {{
+      fr.addEventListener("load", focusDrive);
+      fr.addEventListener("pointerdown", focusDrive);
+      box.addEventListener("click", focusDrive);
+    }}
+  }}
   if (g.script) {{
     var s = document.createElement("script");
     s.src = g.script;
@@ -430,7 +521,7 @@ var GAMES = {data};
   }}
 }})();
 </script>'''
-    return page("Game - NYClip", body, here="games")
+    return page("Game - NYC.exe", body, here="games")
 
 def write(name, content):
     path = os.path.join(ROOT, name)
@@ -445,4 +536,5 @@ if __name__ == "__main__":
     write("send.html", send_page())
     write("games.html", games_page())
     write("game.html", game_pages_js())
+    write("guestbook.html", guestbook())
     print("pages done")

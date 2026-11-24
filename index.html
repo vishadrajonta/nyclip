@@ -2,44 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>NYClip.com</title>
-  <meta name="description" content="NYClip: funny free games about life in New York City. Send them to a friend or put them on your website.">
+  <title>NYC.exe</title>
+  <meta name="description" content="NYC.exe: funny free games about life in New York City. Send them to a friend or put them on your website.">
   <meta name="viewport" content="width=800">
-  <link rel="stylesheet" href="css/nyc.css?v=5">
-  <link rel="icon" type="image/png" href="img/favicon.png?v=5">
+  <link rel="stylesheet" href="css/nyc.css?v=6">
+  <link rel="icon" type="image/png" href="img/favicon.png?v=6">
+  <script>
+  (function(){
+    var q = /(?:\?|&)dialup=1(?:&|$)/.test(location.search);
+    var skip = /(?:\?|&)skipdial=1(?:&|$)/.test(location.search);
+    try {
+      if (skip) sessionStorage.setItem("nyc_exe_connected", "1");
+      if ((skip || sessionStorage.getItem("nyc_exe_connected")) && !q) {
+        document.documentElement.className += " connected";
+      }
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body>
 <table class="page" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td>
-      <div class="awning"><table cellspacing="0" cellpadding="0"><tr><td bgcolor="#cc1f2e" width="18">&nbsp;</td><td bgcolor="#1f7a3a" width="22">&nbsp;</td><td bgcolor="#cc1f2e" width="16">&nbsp;</td><td bgcolor="#1f7a3a" width="24">&nbsp;</td><td bgcolor="#cc1f2e" width="19">&nbsp;</td><td bgcolor="#1f7a3a" width="21">&nbsp;</td><td bgcolor="#cc1f2e" width="17">&nbsp;</td><td bgcolor="#1f7a3a" width="23">&nbsp;</td><td bgcolor="#cc1f2e" width="20">&nbsp;</td><td bgcolor="#1f7a3a" width="18">&nbsp;</td><td bgcolor="#cc1f2e" width="22">&nbsp;</td><td bgcolor="#1f7a3a" width="16">&nbsp;</td><td bgcolor="#cc1f2e" width="25">&nbsp;</td><td bgcolor="#1f7a3a" width="19">&nbsp;</td><td bgcolor="#cc1f2e" width="21">&nbsp;</td><td bgcolor="#1f7a3a" width="17">&nbsp;</td><td bgcolor="#cc1f2e" width="23">&nbsp;</td><td bgcolor="#1f7a3a" width="20">&nbsp;</td><td bgcolor="#cc1f2e" width="18">&nbsp;</td><td bgcolor="#1f7a3a" width="22">&nbsp;</td><td bgcolor="#cc1f2e" width="16">&nbsp;</td><td bgcolor="#1f7a3a" width="24">&nbsp;</td><td bgcolor="#cc1f2e" width="19">&nbsp;</td><td bgcolor="#1f7a3a" width="21">&nbsp;</td><td bgcolor="#cc1f2e" width="20">&nbsp;</td><td bgcolor="#1f7a3a" width="18">&nbsp;</td><td bgcolor="#cc1f2e" width="22">&nbsp;</td><td bgcolor="#1f7a3a" width="17">&nbsp;</td><td bgcolor="#cc1f2e" width="23">&nbsp;</td><td bgcolor="#1f7a3a" width="19">&nbsp;</td><td bgcolor="#cc1f2e" width="21">&nbsp;</td><td bgcolor="#1f7a3a" width="16">&nbsp;</td><td bgcolor="#cc1f2e" width="24">&nbsp;</td><td bgcolor="#1f7a3a" width="20">&nbsp;</td></tr></table></div>
+      <div class="awning"><table cellspacing="0" cellpadding="0"><tr><td bgcolor="#003da5" width="18">&nbsp;</td><td bgcolor="#ff6600" width="22">&nbsp;</td><td bgcolor="#003da5" width="16">&nbsp;</td><td bgcolor="#ff6600" width="24">&nbsp;</td><td bgcolor="#003da5" width="19">&nbsp;</td><td bgcolor="#ff6600" width="21">&nbsp;</td><td bgcolor="#003da5" width="17">&nbsp;</td><td bgcolor="#ff6600" width="23">&nbsp;</td><td bgcolor="#003da5" width="20">&nbsp;</td><td bgcolor="#ff6600" width="18">&nbsp;</td><td bgcolor="#003da5" width="22">&nbsp;</td><td bgcolor="#ff6600" width="16">&nbsp;</td><td bgcolor="#003da5" width="25">&nbsp;</td><td bgcolor="#ff6600" width="19">&nbsp;</td><td bgcolor="#003da5" width="21">&nbsp;</td><td bgcolor="#ff6600" width="17">&nbsp;</td><td bgcolor="#003da5" width="23">&nbsp;</td><td bgcolor="#ff6600" width="20">&nbsp;</td><td bgcolor="#003da5" width="18">&nbsp;</td><td bgcolor="#ff6600" width="22">&nbsp;</td><td bgcolor="#003da5" width="16">&nbsp;</td><td bgcolor="#ff6600" width="24">&nbsp;</td><td bgcolor="#003da5" width="19">&nbsp;</td><td bgcolor="#ff6600" width="21">&nbsp;</td><td bgcolor="#003da5" width="20">&nbsp;</td><td bgcolor="#ff6600" width="18">&nbsp;</td><td bgcolor="#003da5" width="22">&nbsp;</td><td bgcolor="#ff6600" width="17">&nbsp;</td><td bgcolor="#003da5" width="23">&nbsp;</td><td bgcolor="#ff6600" width="19">&nbsp;</td><td bgcolor="#003da5" width="21">&nbsp;</td><td bgcolor="#ff6600" width="16">&nbsp;</td><td bgcolor="#003da5" width="24">&nbsp;</td><td bgcolor="#ff6600" width="20">&nbsp;</td></tr></table></div>
       <div class="mast">
-        <h1><a href="index.html">NYClip</a></h1>
+        <h1><a href="index.html">NYC.exe</a></h1>
         <div class="tag">nothing's equivalent to the N.Y. state of mind &mdash; Nas</div>
       </div>
       <div class="skyline">
-        <img src="img/skyline.png?v=5" alt="New York skyline" width="800" height="100">
+        <img src="img/skyline.png?v=6" alt="New York skyline" width="800" height="100">
       </div>
       <div class="navwrap">
-        <table class="nav" align="center" cellspacing="0" cellpadding="0"><tr><td><a href="index.html" class="here"><span class="bullet b-1">1</span><br>Home</a></td><td><a href="games.html"><span class="bullet b-6">6</span><br>All Games</a></td><td><a href="signup.html"><span class="bullet b-N">N</span><br>Sign Up</a></td><td><a href="send.html"><span class="bullet b-A">A</span><br>Send</a></td><td><a href="about.html"><span class="bullet b-7">7</span><br>About</a></td></tr></table>
+        <table class="nav" align="center" cellspacing="0" cellpadding="0"><tr><td><a href="index.html" class="here"><span class="bullet b-1">1</span><br>Home</a></td><td><a href="games.html"><span class="bullet b-6">6</span><br>All Games</a></td><td><a href="guestbook.html"><span class="bullet b-G">G</span><br>Guestbook</a></td><td><a href="signup.html"><span class="bullet b-N">N</span><br>Sign Up</a></td><td><a href="send.html"><span class="bullet b-A">A</span><br>Send</a></td><td><a href="about.html"><span class="bullet b-7">7</span><br>About</a></td></tr></table>
       </div>
       <div class="marquee-bar">
         <table cellspacing="0" cellpadding="0"><tr>
           <td class="svc-label">SERVICE CHANGE</td>
-          <td><marquee behavior="scroll" direction="left" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Everything Bagel, Rooftop Run, and Midtown Drive are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
+          <td><marquee behavior="scroll" direction="left" scrollamount="3">Stand clear of the closing doors, please. &nbsp;·&nbsp; Bootleg or Legit?, Midtown Drive, Everything Bagel, and Rooftop Run are running. The other games are delayed. &nbsp;·&nbsp; The 6 is local. &nbsp;·&nbsp; Mind the gap.</marquee></td>
         </tr></table>
       </div>
     </td>
   </tr>
   <tr>
     <td>
+      <div id="dialup" class="dialup">
+  <div class="dialwin">
+    <div class="dialtitle">Connecting to NYC.exe</div>
+    <div class="dialbody">
+      <p class="dialfine">New York Online  •  Local access: 718</p>
+      <p id="dialstatus">Ready to dial the city.<br>Click Connect when you hear the modem. Or say you do.</p>
+      <div class="dialbar"><div id="dialprog"></div></div>
+      <div class="dialbtns">
+        <a href="#" id="dialskip">Skip</a>
+        <button type="button" id="dialconnect">Connect</button>
+      </div>
+    </div>
+  </div>
+  <audio id="dialaudio" src="audio/modem.wav?v=6" preload="auto"></audio>
+</div>
+<script src="js/dialup.js?v=6"></script>
+
       <table class="cols" cellspacing="0" cellpadding="0">
         <tr>
           <td class="col-left">
             <div class="stationsign"><span class="bullet b-6">6</span>GAMES</div>
         <table class="gamerow" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="thumb thumb-md"><a href="game.html?id=subway-shuffle"><img src="img/thumbs/subway-shuffle.png?v=5" alt="Subway Shuffle"></a></td>
+            <td class="thumb thumb-md"><a href="game.html?id=subway-shuffle"><img src="img/thumbs/subway-shuffle.png?v=6" alt="Subway Shuffle"></a></td>
             <td>
               <a class="gtitle" href="game.html?id=subway-shuffle">Subway Shuffle</a>
               <div class="place">on the 6</div>
@@ -50,34 +79,12 @@
         </table>
         <table class="gamerow" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="thumb thumb-lg"><a href="game.html?id=taxi-dash"><img src="img/thumbs/taxi-dash.png?v=5" alt="Taxi Dash"></a></td>
-            <td>
-              <a class="gtitle" href="game.html?id=taxi-dash">Taxi Dash</a>
-              <div class="place">uptown</div>
-              <div class="blurb">A fare is waiting uptown and five other cabs want it. Get there first and step on it!</div>
-              <br><a class="sendlink" href="send.html?game=taxi-dash">send to a friend</a>
-            </td>
-          </tr>
-        </table>
-        <table class="gamerow" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="thumb thumb-sm"><a href="game.html?id=coffee-regular"><img src="img/thumbs/coffee-regular.png?v=5" alt="Coffee Regular"></a></td>
+            <td class="thumb thumb-sm"><a href="game.html?id=coffee-regular"><img src="img/thumbs/coffee-regular.png?v=6" alt="Coffee Regular"></a></td>
             <td>
               <a class="gtitle" href="game.html?id=coffee-regular">Coffee Regular</a>
               <div class="place">the corner cart</div>
               <div class="blurb">A regular means milk and sugar. Say latte at the cart and you’re walking to the next one.</div>
               <br><a class="sendlink" href="send.html?game=coffee-regular">send to a friend</a>
-            </td>
-          </tr>
-        </table>
-        <table class="gamerow" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="thumb thumb-md"><a href="game.html?id=metrocard-swipe"><img src="img/thumbs/metrocard-swipe.png?v=5" alt="MetroCard Swipe"></a></td>
-            <td>
-              <a class="gtitle" href="game.html?id=metrocard-swipe">MetroCard Swipe</a>
-              <div class="place">every station</div>
-              <div class="blurb">The turnstile is hungry and your card is dying. Swipe it right, or get in line for a new one.</div>
-              <br><a class="sendlink" href="send.html?game=metrocard-swipe">send to a friend</a>
             </td>
           </tr>
         </table>
@@ -88,64 +95,66 @@
           </td>
           <td class="col-mid">
             <div class="welcome">
-              <h2>Welcome to NYClip</h2>
+              <h2>Welcome to NYC.exe</h2>
               <p>Funny free games about life in New York City. Send them to your friends or put them on your website. Mind the gap.</p>
             </div>
 
           <div class="newblock">
             <div class="newflag">NEW!</div>
-            <a href="game.html?id=midtown-drive"><img src="img/thumbs/midtown-drive.png?v=5" alt="Midtown Drive"></a><br>
+            <a href="game.html?id=bootleg-or-legit"><img src="img/thumbs/bootleg-or-legit.png?v=6" alt="Bootleg or Legit?"></a><br>
+            <a class="gtitle" href="game.html?id=bootleg-or-legit">Bootleg or Legit?</a>
+            <div class="place">Canal Street</div>
+          </div>
+          <div class="newblock">
+            <div class="newflag">NEW!</div>
+            <a href="game.html?id=midtown-drive"><img src="img/thumbs/midtown-drive.png?v=6" alt="Midtown Drive"></a><br>
             <a class="gtitle" href="game.html?id=midtown-drive">Midtown Drive</a>
             <div class="place">Midtown, 33rd to 57th</div>
           </div>
           <div class="newblock">
             <div class="newflag">NEW!</div>
-            <a href="game.html?id=everything-bagel"><img src="img/thumbs/everything-bagel.png?v=5" alt="Everything Bagel"></a><br>
+            <a href="game.html?id=everything-bagel"><img src="img/thumbs/everything-bagel.png?v=6" alt="Everything Bagel"></a><br>
             <a class="gtitle" href="game.html?id=everything-bagel">Everything Bagel</a>
             <div class="place">the bagel shop</div>
           </div>
           <div class="newblock">
             <div class="newflag">NEW!</div>
-            <a href="game.html?id=rooftop-run"><img src="img/thumbs/rooftop-run.png?v=5" alt="Rooftop Run"></a><br>
+            <a href="game.html?id=rooftop-run"><img src="img/thumbs/rooftop-run.png?v=6" alt="Rooftop Run"></a><br>
             <a class="gtitle" href="game.html?id=rooftop-run">Rooftop Run</a>
             <div class="place">Midtown</div>
           </div>
             <div class="mail">
               <h3>Join the FREE mailing list</h3>
               <form action="signup.html" method="get" onsubmit="return checkMail(this);">
-                <input type="email" name="email">
+                <input type="text" name="email" size="18">
                 <br>
-                <input class="btn" type="submit" value="Submit">
+                <input type="submit" value="Submit" class="btn">
               </form>
-              <div class="fine">We’ll tell you when the new NYClips are out. No spam, we barely have time to swipe in.</div>
+              <div class="fine">We’ll tell you when the new NYC.exe games are out. No spam, we barely have time to swipe in.</div>
             </div>
           </td>
           <td class="col-right">
             <div class="stationsign"><span class="bullet b-A">A</span>ALL GAMES</div>
             <ul class="alllist">
           <li><a href="game.html?id=subway-shuffle">Subway Shuffle</a></li>
+          <li><a href="game.html?id=bootleg-or-legit">Bootleg or Legit?</a> <span class="tag">new / play</span></li>
           <li><a href="game.html?id=midtown-drive">Midtown Drive</a> <span class="tag">new / play</span></li>
           <li><a href="game.html?id=everything-bagel">Everything Bagel</a> <span class="tag">new / play</span></li>
           <li><a href="game.html?id=rooftop-run">Rooftop Run</a> <span class="tag">new / play</span></li>
-          <li><a href="game.html?id=taxi-dash">Taxi Dash</a></li>
           <li><a href="game.html?id=coffee-regular">Coffee Regular</a></li>
-          <li><a href="game.html?id=metrocard-swipe">MetroCard Swipe</a></li>
             </ul>
             <div class="counter">
               You are visitor number<br>
-              <img src="img/digits/0.png?v=5" alt="0" width="14" height="22"><img src="img/digits/0.png?v=5" alt="0" width="14" height="22"><img src="img/digits/2.png?v=5" alt="2" width="14" height="22"><img src="img/digits/8.png?v=5" alt="8" width="14" height="22"><img src="img/digits/4.png?v=5" alt="4" width="14" height="22"><img src="img/digits/7.png?v=5" alt="7" width="14" height="22">
+              <img src="img/digits/0.png?v=6" alt="0" width="14" height="22"><img src="img/digits/0.png?v=6" alt="0" width="14" height="22"><img src="img/digits/2.png?v=6" alt="2" width="14" height="22"><img src="img/digits/8.png?v=6" alt="8" width="14" height="22"><img src="img/digits/4.png?v=6" alt="4" width="14" height="22"><img src="img/digits/7.png?v=6" alt="7" width="14" height="22">
             </div>
           </td>
         </tr>
       </table>
 <script>
 function checkMail(f) {
-  var v = f.email.value || "";
-  if (!/\S+@\S+\.\S+/.test(v)) {
-    alert("Please make sure your email address is in the format yourname@company.com.");
-    return false;
-  }
-  alert("Thanks! You’ll get the new NYClips when they drop.");
+  var v = f.email.value;
+  if (!v || v.indexOf("@") < 0) { alert("Please type a real email address."); return false; }
+  alert("Thanks! You’ll get the new NYC.exe games when they drop.");
   return false;
 }
 </script>
@@ -155,13 +164,14 @@ function checkMail(f) {
     <td>
       <div class="bestview">Best viewed in 800×600 with Internet Explorer or Netscape Navigator.</div>
       <div class="footer">
-        <span class="copy">&copy; 2026 NYClip</span>
+        <span class="copy">&copy; 2026 NYC.exe</span>
         <a href="index.html">Home</a> &nbsp;·&nbsp;
         <a href="games.html">All Games</a> &nbsp;·&nbsp;
+        <a href="guestbook.html">Guestbook</a> &nbsp;·&nbsp;
         <a href="signup.html">Sign Up</a> &nbsp;·&nbsp;
         <a href="about.html">About</a> &nbsp;·&nbsp;
         <a href="send.html">Send to a friend</a>
-        <div class="please">Stand clear of the closing doors, please. Last updated November 17, 2026.</div>
+        <div class="please">Stand clear of the closing doors, please. Last updated November 24, 2026.</div>
       </div>
     </td>
   </tr>
