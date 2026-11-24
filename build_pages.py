@@ -3,7 +3,7 @@
 import os, html as htmllib, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "7"
+V = "8"
 
 def asset(path):
     return f"{path}?v={V}"
@@ -23,13 +23,13 @@ GAMES = [
     {
         "id": "logo-builder",
         "title": "Logo Builder",
-        "blurb": "The Yankees N is on the floor and the Y is upside down. Put the logo back together and we’ll tell you how close you got.",
+        "blurb": "The Yankees N is on the floor and the Y is upside down. Put the interlocking NY back together and we’ll tell you how close you got.",
         "playable": True,
         "col": "new",
         "place": "the merch table",
         "script": asset("js/logo-builder.js"),
         "dom": True,
-        "hint": "Drag the pieces. Click one, then rotate (Q / E) and scale (− / =). Press Done when you think you’ve got it.",
+        "hint": "Drag the N and the Y onto the navy square. Click a piece to select it, then scale and rotate it. Hit Check when you think they interlock.",
         "thumb": "thumb-lg",
     },
     {

@@ -403,16 +403,13 @@ img { border: 0; }
   text-align: center;
 }
 .logogame .lg-top { font-family: Arial, Helvetica, sans-serif; margin-bottom: 6px; }
-.logogame .lg-round { font-size: 11px; color: #003da5; font-weight: bold; }
 .logogame .lg-q {
   font-size: 15px;
   font-weight: bold;
-  margin: 3px 0 2px 0;
+  margin: 3px 0 6px 0;
 }
-.logogame .lg-team { font-size: 11px; color: #555; font-style: italic; margin-bottom: 4px; }
 .logogame .lg-fb {
-  min-height: 20px;
-  margin: 4px 0 8px 0;
+  margin: 8px 0 4px 0;
   font-size: 12px;
   line-height: 16px;
   color: #111;
@@ -424,59 +421,98 @@ img { border: 0; }
   color: #003da5;
   margin: 4px 0 2px 0;
 }
-.logogame .lg-again { margin-top: 8px; }
+.logogame .lg-verdict {
+  font-size: 12px;
+  line-height: 16px;
+  color: #111;
+  margin: 0 10px 6px 10px;
+}
 .lg-board {
   position: relative;
   width: 100%;
   max-width: 640px;
-  height: 380px;
+  height: 400px;
   margin: 0 auto;
-  background: #eef3fb;
+  background: #d4ddec;
   border: 2px solid #003da5;
   overflow: hidden;
   touch-action: none;
   outline: none;
   cursor: default;
 }
-.lg-frame {
+.lg-target {
   position: absolute;
   left: 50%;
   top: 50%;
   width: 250px;
   height: 250px;
   margin: -125px 0 0 -125px;
-  border: 2px dashed #9aa8c0;
-  border-radius: 8px;
-  color: #9aa8c0;
-  font: italic 11px Verdana, Arial, sans-serif;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 6px;
-  pointer-events: none;
+  background: #172446;
   box-sizing: border-box;
+  border: 2px solid #003da5;
+  pointer-events: none;
 }
 .lg-piece {
   position: absolute;
   left: 0;
   top: 0;
+  width: 0;
+  height: 0;
   cursor: grab;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+  z-index: 2;
+  pointer-events: none;
+}
+.lg-piece .lg-spin {
+  transform-origin: center center;
   line-height: 0;
-  filter: drop-shadow(1px 1px 1px rgba(0,0,0,.2));
+  filter: drop-shadow(1px 1px 1px rgba(0,0,0,.25));
+  pointer-events: none;
 }
 .lg-piece svg { display: block; overflow: visible; pointer-events: none; }
-.lg-piece.on {
-  outline: 2px solid #ff6600;
-  outline-offset: 2px;
-  cursor: grabbing;
+.lg-piece path { pointer-events: auto; }
+.lg-piece.on .lg-spin {
+  filter: drop-shadow(0 0 1px #ff6600) drop-shadow(1px 1px 1px rgba(0,0,0,.25));
 }
-.lg-piece.frozen {
-  cursor: default;
-  outline: none;
-  filter: none;
+.lg-handles {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.lg-h {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  background: #ffffff;
+  border: 2px solid #ff6600;
+  box-sizing: border-box;
+  pointer-events: auto;
+  touch-action: none;
+  z-index: 6;
+}
+.lg-h-sc { cursor: nwse-resize; }
+.lg-h-rot {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: #ff6600;
+  border: 2px solid #ffffff;
+  cursor: grab;
+}
+.lg-h-line {
+  position: absolute;
+  height: 1px;
+  background: #ff6600;
+  transform-origin: 0 50%;
+  pointer-events: none;
 }
 .lg-tools {
   display: flex;
@@ -495,7 +531,7 @@ img { border: 0; }
   align-items: center;
   gap: 6px;
 }
-.lg-scale input { width: 110px; }
+.lg-scale input { width: 120px; }
 .lg-compare {
   display: flex;
   gap: 10px;
@@ -505,35 +541,17 @@ img { border: 0; }
 }
 .lg-pane {
   border: 2px solid #003da5;
-  background: #eef3fb;
+  background: #172446;
   padding: 4px;
   flex: 1;
   max-width: 48%;
 }
 .lg-pane-h {
   font: bold 11px Arial, Helvetica, sans-serif;
-  color: #003da5;
+  color: #ffffff;
   margin-bottom: 4px;
 }
-.lg-mini { overflow: hidden; background: #eef3fb; }
-.lg-mini-clip { margin: 0 auto; overflow: hidden; }
-.lg-mini-inner { position: relative; }
-.lg-mini .lg-piece { cursor: default; }
-.lg-list {
-  list-style: none;
-  margin: 8px auto 0 auto;
-  padding: 0;
-  max-width: 320px;
-  text-align: left;
-}
-.lg-list li {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
-  border-bottom: 1px solid #c5d0e4;
-  font-size: 12px;
-}
-.lg-list b { color: #003da5; }
+.lg-mini { overflow: hidden; background: #172446; min-height: 180px; }
 
 /* guestbook */
 .gbook { width: 100%; border-collapse: collapse; margin: 10px 0 16px 0; }
